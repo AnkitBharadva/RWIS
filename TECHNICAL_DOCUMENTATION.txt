@@ -1,0 +1,1016 @@
+================================================================================
+                    RAILWAY WAGON INSPECTION SYSTEM
+                      TECHNICAL DOCUMENTATION
+================================================================================
+
+Document Version: 2.0
+Last Updated: January 11, 2026
+Platform: Windows 11 with NVIDIA RTX 3050 GPU (6 GB VRAM)
+
+================================================================================
+                           TABLE OF CONTENTS
+================================================================================
+
+1. SYSTEM OVERVIEW
+2. ARCHITECTURE
+3. CORE MODULES
+   3.1 Configuration Module
+   3.2 Pipeline Components
+   3.3 Detection Modules
+   3.4 Tracking Module
+   3.5 Deblurring System
+   3.6 OCR Pipeline
+   3.7 Utility Modules
+   3.8 Dashboard Application
+   3.9 OCR Visual Enhancements
+4. DATA MODELS
+5. PROCESSING PIPELINE FLOW
+6. GPU MEMORY MANAGEMENT
+7. ERROR HANDLING
+8. CONFIGURATION REFERENCE
+9. API REFERENCE
+10. DEPENDENCIES
+11. TESTING
+
+================================================================================
+                         1. SYSTEM OVERVIEW
+================================================================================
+
+The Railway Wagon Inspection System is an end-to-end AI video processing 
+pipeline designed for:
+- Railway wagon counting
+- Damage detection
+- OCR-based wagon identification logging
+- Real-time visual feedback and monitoring
+
+TARGET ENVIRONMENT:
+- Windows 11 machine
+- NVIDIA RTX 3050 GPU (6 GB VRAM)
+- Real-time or near-real-time inference
+- Fast-moving vehicles (50-80 km/h)
+- Day and night-time footage support
+
+KEY FEATURES:
+- YOLOv11n-based wagon and damage detection
+- ByteTrack multi-object tracking
+- MPRNet ROI-only deblurring (FP16 with FP32 fallback)
+- EasyOCR text extraction with visual feedback
+- CLAHE enhancement for low-light conditions
+- OCR bounding box visualization with confidence overlays
+- Processing status indicators (Illumination, Deblur, OCR)
+- Configurable OCR frame interval control
+- Automatic frame saving with JSON metadata
+- CSV/JSON logging with debug frame output
+- Streamlit-based Mission Control Dashboard
+
+
+================================================================================
+                           2. ARCHITECTURE
+================================================================================
+
+The system follows a multi-stage pipeline architecture:
+
+PROCESSING STAGES:
+------------------
+Stage 1:  Frame Capture        - Video source to OpenCV frame capture
+Stage 2:  CLAHE Enhancement    - L-channel only enhancement for detection
+Stage 3:  Wagon Detection      - YOLOv11n detects wagons (RAW/CLAHE only)
+Stage 4:  ROI Extraction       - Extract text region ROI (NOT full wagon)
+Stage 5:  ROI Resizing         - Resize to max 256px width (aspect preserved)
+Stage 6:  Blur Gating          - Compute Laplacian variance on resized ROI
+Stage 7:  N-th Frame Check     - Determine if MPRNet should run this frame
+Stage 8:  MPRNet Deblur        - FP16 inference on ROI (if needed)
+Stage 9:  OCR                  - EasyOCR on raw or deblurred ROI
+Stage 10: OCR Visualization    - Draw bounding boxes and text overlays
+Stage 11: Damage Detection     - Parallel YOLOv11n on RAW wagon ROI
+Stage 12: Tracking             - ByteTrack for wagon ID assignment/counting
+Stage 13: Frame Saving         - Save OCR frames with JSON metadata
+Stage 14: Logging              - CSV/JSON output with all metadata
+
+KEY DESIGN CONSTRAINTS:
+-----------------------
+- YOLO models receive ONLY RAW or CLAHE-enhanced frames (never deblurred)
+- MPRNet deblurring is applied ONLY to small, resized OCR ROIs
+- Deblurring runs every N frames (N=3-5), reusing results for intermediate
+- FP16 inference for memory efficiency with FP32 fallback
+- OCR accuracy is prioritized over visual beauty
+- GPU memory is carefully managed to stay within 6 GB VRAM
+- NAFNet is NOT used anywhere in the pipeline
+
+PROJECT STRUCTURE:
+------------------
+railway-wagon-inspection/
+├── config.py                    # Pipeline configuration
+├── main.py                      # Main pipeline controller
+├── run_dashboard.py             # Dashboard launcher
+├── run_with_display.py          # Pipeline with display mode
+├── requirements.txt             # Python dependencies
+├── README.md                    # Project documentation
+├── TECHNICAL_DOCUMENTATION.txt  # This file
+│
+├── pipelines/                   # Detection and processing modules
+│   ├── __init__.py
+│   ├── wagon_detector.py        # YOLOv11n wagon detection
+│   ├── damage_detector.py       # YOLOv11n damage detection
+│   ├── blur_detector.py         # Laplacian variance blur detection
+│   ├── ocr_pipeline.py          # EasyOCR text extraction
+│   ├── deblur_manager.py        # N-th frame deblur coordination
+│   ├── mprnet_wrapper.py        # MPRNet deblurring wrapper
+│   ├── nafnet_wrapper.py        # NAFNet wrapper (legacy, not used)
+│   └── calibration_manager.py   # Auto-calibration for blur/illumination
+│
+├── tracking/                    # Multi-object tracking
+│   ├── __init__.py
+│   └── tracker.py               # ByteTrack wagon tracker
+│
+├── utils/                       # Utility modules
+│   ├── __init__.py
+│   ├── data_models.py           # Data classes and enums
+│   ├── clahe.py                 # CLAHE enhancement
+│   ├── roi_utils.py             # ROI extraction and resizing
+│   ├── logger.py                # CSV/JSON logging
+│   ├── error_handling.py        # Custom exceptions and retry logic
+│   ├── gpu_utils.py             # GPU memory management
+│   ├── settings_manager.py      # Settings persistence
+│   └── illumination_controller.py # Illumination enhancement control
+│
+├── dashboard/                   # Streamlit dashboard
+│   ├── __init__.py
+│   ├── app.py                   # Main dashboard application
+│   ├── models.py                # Dashboard data models
+│   ├── metrics.py               # Performance metrics calculator
+│   ├── video_manager.py         # Video capture manager
+│   ├── styles.py                # CSS styling
+│   ├── dual_display.py          # Dual video display (raw/processed)
+│   ├── frame_saver.py           # Conditional frame saving
+│   ├── track_renderer.py        # Track ID overlay rendering
+│   ├── ocr_log.py               # OCR detection log display
+│   ├── ocr_visualization.py     # OCR bounding box visualization
+│   ├── ocr_interval_controller.py # OCR frame interval control
+│   ├── ocr_frame_saver.py       # OCR frame saving with metadata
+│   └── processing_indicators.py # Processing status indicators
+│
+├── models/                      # YOLO model weights
+│   ├── damage_detector.pt       # Contains: wagon_body, wheel classes
+│   └── wagon_detector.pt        # Contains: damage classes
+│
+├── MPRNet/                      # MPRNet deblurring model
+│   └── Deblurring/
+│       └── pretrained_models/
+│           └── model_deblurring.pth
+│
+├── outputs/                     # Output directory
+│   ├── debug_frames/            # Debug frame images
+│   └── ocr_frames/              # OCR detection frames with metadata
+│
+└── tests/                       # Unit and property tests
+    ├── test_*.py                # Test modules (355+ tests)
+    └── __init__.py
+
+
+================================================================================
+                         3. CORE MODULES
+================================================================================
+
+--------------------------------------------------------------------------------
+3.1 CONFIGURATION MODULE (config.py)
+--------------------------------------------------------------------------------
+
+The PipelineConfig dataclass holds all configurable parameters:
+
+CLASS: PipelineConfig
+---------------------
+Attributes:
+  video_source: str              - Video file path or RTSP stream URL
+  blur_threshold: float          - Single threshold for blur gating (default: 100.0)
+  blur_threshold_t1: float       - Legacy lower threshold (default: 100.0)
+  blur_threshold_t2: float       - Legacy upper threshold (default: 300.0)
+  
+  wagon_model_path: str          - Path to wagon detection model
+  damage_model_path: str         - Path to damage detection model
+  mprnet_model_path: str         - Path to MPRNet deblurring model
+  
+  max_roi_width: int             - Maximum ROI width for deblurring (default: 256)
+  deblur_frame_interval: int     - Run MPRNet every N frames (default: 3)
+  
+  wagon_confidence_threshold: float   - Wagon detection threshold (default: 0.25)
+  damage_confidence_threshold: float  - Damage detection threshold (default: 0.5)
+  counting_line_position: float       - Line position as fraction (default: 0.5)
+  counting_line_orientation: str      - "vertical" or "horizontal"
+  
+  ocr_gpu_enabled: bool          - Enable GPU for OCR (default: True)
+  ocr_language: str              - OCR language (default: "en")
+  ocr_frame_interval: int        - OCR execution interval (default: 5)
+  
+  use_fp16: bool                 - Use FP16 inference (default: True)
+  fp32_fallback: bool            - Fall back to FP32 on instability (default: True)
+  max_batch_size: int            - Batch size for MPRNet (always 1)
+  enable_threading: bool         - Enable async processing (default: True)
+  
+  output_dir: str                - Output directory (default: "outputs")
+  enable_debug_frames: bool      - Save debug frames (default: False)
+  log_format: List[str]          - Output formats (default: ["csv", "json"])
+
+--------------------------------------------------------------------------------
+3.2 PIPELINE COMPONENTS (main.py)
+--------------------------------------------------------------------------------
+
+CLASS: GPUMemoryManager
+-----------------------
+Manages GPU memory to stay within safe limits (6 GB VRAM).
+
+Methods:
+  start_monitoring()             - Start background memory monitoring
+  stop_monitoring()              - Stop background memory monitoring
+  get_memory_usage() -> Dict     - Get current GPU memory usage
+  is_memory_pressure() -> bool   - Check if memory exceeds threshold
+  clear_cache()                  - Clear GPU memory cache
+
+CLASS: RailwayWagonPipeline
+---------------------------
+Main pipeline controller orchestrating all processing stages.
+
+Constructor:
+  __init__(config: PipelineConfig, display: bool = False)
+
+Methods:
+  run()                          - Run the main pipeline loop
+  shutdown()                     - Gracefully shutdown and release resources
+  get_wagon_count() -> int       - Get current wagon count
+  is_running() -> bool           - Check if pipeline is running
+
+--------------------------------------------------------------------------------
+3.3 DETECTION MODULES
+--------------------------------------------------------------------------------
+
+WAGON DETECTOR (pipelines/wagon_detector.py)
+--------------------------------------------
+Detects railway wagons using YOLOv11n model.
+
+CLASS: WagonDetector
+--------------------
+Methods:
+  detect(frame, frame_id) -> List[WagonDetection]
+  extract_roi(frame, detection, padding) -> (roi, bbox)
+  mark_frame_deblurred(frame, frame_id)
+  clear_frame_state()
+
+DAMAGE DETECTOR (pipelines/damage_detector.py)
+----------------------------------------------
+Detects damage on wagon ROIs using separate YOLOv11n model.
+
+CLASS: DamageDetector
+---------------------
+Methods:
+  detect(wagon_roi, wagon_id) -> List[DamageDetection]
+
+BLUR DETECTOR (pipelines/blur_detector.py)
+------------------------------------------
+Detects blur using Laplacian variance.
+
+CLASS: BlurDetector
+-------------------
+Methods:
+  compute_blur_score(frame) -> float
+  get_blur_decision(blur_score) -> BlurDecision
+
+--------------------------------------------------------------------------------
+3.4 TRACKING MODULE (tracking/tracker.py)
+--------------------------------------------------------------------------------
+
+CLASS: WagonTracker
+-------------------
+Multi-object tracker using ByteTrack algorithm.
+
+Methods:
+  update(detections, frame_shape, frame_index) -> List[TrackedWagon]
+  get_wagon_count() -> int
+  has_crossed_line(track_id) -> bool
+  reset()
+  get_crossed_wagon_ids() -> Set[int]
+
+--------------------------------------------------------------------------------
+3.5 DEBLURRING SYSTEM
+--------------------------------------------------------------------------------
+
+MPRNET WRAPPER (pipelines/mprnet_wrapper.py)
+--------------------------------------------
+Wrapper for MPRNet GoPro-trained deblurring model.
+
+CLASS: MPRNetDeblur
+-------------------
+Methods:
+  load_model()
+  is_loaded() -> bool
+  deblur_roi(roi) -> np.ndarray
+  get_memory_usage() -> dict
+  clear_memory_cache()
+
+DEBLUR MANAGER (pipelines/deblur_manager.py)
+--------------------------------------------
+Manages conditional deblurring with N-th frame execution.
+
+CLASS: DeblurManager
+--------------------
+Methods:
+  process_roi(roi, wagon_id, frame_index) -> (processed_roi, deblur_applied, source_frame)
+  get_cached_roi(wagon_id) -> Optional[(roi, source_frame)]
+  clear_cache(wagon_id)
+  clear_all_caches()
+
+--------------------------------------------------------------------------------
+3.6 OCR PIPELINE (pipelines/ocr_pipeline.py)
+--------------------------------------------------------------------------------
+
+CLASS: OCRPipeline
+------------------
+Pipeline for extracting text from images using EasyOCR.
+
+Methods:
+  is_initialized() -> bool
+  is_available() -> bool
+  extract_text(roi, min_confidence=0.5, is_low_light=None) -> OCRResult
+  extract_text_batch(rois, min_confidence=0.5) -> List[OCRResult]
+  get_low_light_threshold() -> int
+  set_low_light_threshold(threshold)
+  get_gamma_value() -> float
+  set_gamma_value(gamma)
+
+--------------------------------------------------------------------------------
+3.7 UTILITY MODULES
+--------------------------------------------------------------------------------
+
+DATA MODELS (utils/data_models.py)
+----------------------------------
+Core data structures including:
+- BlurDecision (enum)
+- DamageClass (enum)
+- BoundingBox, WagonDetection, TrackedWagon
+- DamageDetection, OCRResult, DeblurResult
+- WagonRecord, OCRDetection, OCRFrameMetadata
+
+SETTINGS MANAGER (utils/settings_manager.py)
+--------------------------------------------
+Manages persistent settings with validation.
+
+CLASS: SettingsManager
+----------------------
+Methods:
+  load_settings() -> PipelineSettings
+  save_settings(settings: PipelineSettings)
+  update_blur_settings(**kwargs)
+  update_illumination_settings(**kwargs)
+  update_ocr_settings(**kwargs)
+  reset_to_defaults()
+
+ILLUMINATION CONTROLLER (utils/illumination_controller.py)
+----------------------------------------------------------
+Controls illumination enhancement with gamma correction.
+
+CLASS: IlluminationController
+-----------------------------
+Methods:
+  is_low_light(frame) -> bool
+  get_mean_luminance(frame) -> float
+  process(frame) -> (processed_frame, was_applied)
+  update_from_calibration(threshold, gamma)
+
+
+--------------------------------------------------------------------------------
+3.8 DASHBOARD APPLICATION
+--------------------------------------------------------------------------------
+
+The Streamlit-based Mission Control Dashboard provides a web interface for
+real-time monitoring of the wagon inspection system.
+
+MAIN APPLICATION (dashboard/app.py)
+-----------------------------------
+CLASS: MissionControlDashboard
+------------------------------
+Methods:
+  render_sidebar() -> SidebarSettings
+  render_metrics_row(...)
+  render_video_feed(placeholder, frame)
+  render_detection_log(placeholder, detection_log)
+  run()
+
+DUAL DISPLAY (dashboard/dual_display.py)
+----------------------------------------
+CLASS: DualVideoDisplay
+-----------------------
+Displays raw and processed frames side-by-side.
+
+Methods:
+  update(raw_frame, processed_frame)
+  get_frame_index() -> int
+  reset()
+
+FRAME SAVER (dashboard/frame_saver.py)
+--------------------------------------
+CLASS: ConditionalFrameSaver
+----------------------------
+Saves frames based on processing triggers.
+
+Methods:
+  should_save(deblur_applied, illumination_applied, ocr_detected) -> bool
+  save_frame(frame, metadata) -> Optional[str]
+
+TRACK RENDERER (dashboard/track_renderer.py)
+--------------------------------------------
+CLASS: TrackRenderer
+--------------------
+Renders track IDs on video frames.
+
+Methods:
+  render_track_ids(frame, tracked_wagons) -> np.ndarray
+
+OCR LOG (dashboard/ocr_log.py)
+------------------------------
+CLASS: OCRLogDisplay
+--------------------
+Manages OCR detection log display.
+
+Methods:
+  append_entry(entry: OCRLogEntry)
+  to_dataframe() -> pd.DataFrame
+  clear()
+  get_entry_count() -> int
+  get_latest_entries(count) -> List[OCRLogEntry]
+
+--------------------------------------------------------------------------------
+3.9 OCR VISUAL ENHANCEMENTS (NEW)
+--------------------------------------------------------------------------------
+
+OCR VISUALIZATION (dashboard/ocr_visualization.py)
+--------------------------------------------------
+Handles OCR bounding box and text overlay visualization.
+
+CLASS: OCRVisualization
+-----------------------
+Color Constants (BGR format):
+  OCR_BOX_COLOR_NORMAL = (255, 255, 0)      # Cyan
+  OCR_BOX_COLOR_DEBLURRED = (255, 200, 0)   # Bright cyan
+  OCR_TEXT_COLOR_NORMAL = (255, 255, 255)   # White
+  OCR_TEXT_COLOR_WARNING = (0, 165, 255)    # Orange (low confidence)
+  CONFIDENCE_WARNING_THRESHOLD = 0.5
+
+Methods:
+  draw_ocr_boxes(frame, ocr_results, wagon_bbox, deblur_applied) -> np.ndarray
+    - Draw OCR bounding boxes on frame with ROI-to-frame coordinate adjustment
+    - Cyan boxes for normal, bright cyan for deblurred
+    
+  draw_text_overlay(frame, text, confidence, position, deblur_applied) -> np.ndarray
+    - Draw text overlay with semi-transparent background
+    - White text for confidence >= 50%, orange for < 50%
+    - Positioned above bounding box to avoid obscuring detected region
+    
+  adjust_coordinates(ocr_bbox, wagon_bbox) -> BoundingBox
+    - Convert ROI-relative coordinates to frame-absolute coordinates
+    - Formula: frame_x = wagon_x1 + roi_x, frame_y = wagon_y1 + roi_y
+    
+  truncate_text(text) -> str
+    - Truncate text to 50 characters with ellipsis if longer
+
+OCR INTERVAL CONTROLLER (dashboard/ocr_interval_controller.py)
+--------------------------------------------------------------
+Controls OCR execution frequency based on frame interval.
+
+CLASS: OCRIntervalController
+----------------------------
+Constants:
+  MIN_INTERVAL = 1
+  MAX_INTERVAL = 30
+  DEFAULT_INTERVAL = 5
+
+Methods:
+  should_run_ocr(frame_index) -> bool
+    - Returns True if OCR should run on this frame
+    - OCR runs when frame_index % interval == 0
+    
+  get_status_text(frame_index) -> str
+    - Returns "ACTIVE" when OCR runs
+    - Returns "SKIPPED (frame N of M)" when skipped
+
+Properties:
+  interval: int (getter/setter with clamping to 1-30 range)
+
+OCR FRAME SAVER (dashboard/ocr_frame_saver.py)
+----------------------------------------------
+Saves OCR frames with JSON metadata.
+
+CLASS: OCRFrameSaver
+--------------------
+Constants:
+  DEFAULT_OUTPUT_DIR = "outputs/ocr_frames"
+
+Methods:
+  save_ocr_frame(frame, ocr_detections, metadata) -> (frame_path, metadata_path)
+    - Save annotated frame as JPEG
+    - Save JSON metadata sidecar file
+    - Returns (None, None) if saving failed
+    
+  generate_filename(timestamp, frame_index, wagon_id) -> str
+    - Format: ocr_{YYYYMMDD_HHMMSS_ffffff}_{frame_index}_{wagon_id}.jpg
+
+Metadata JSON Structure:
+  {
+    "timestamp": "ISO format string",
+    "frame_index": int,
+    "wagon_id": int,
+    "detections": [
+      {
+        "text": "detected text",
+        "confidence": 0.95,
+        "bbox": {"x1": 10, "y1": 20, "x2": 100, "y2": 50}
+      }
+    ],
+    "deblur_applied": bool,
+    "illumination_applied": bool,
+    "blur_score": float (optional),
+    "luminance_level": float (optional)
+  }
+
+PROCESSING STATUS INDICATORS (dashboard/processing_indicators.py)
+-----------------------------------------------------------------
+Visual indicators for processing pipeline status.
+
+CLASS: ProcessingStatus (Enum)
+------------------------------
+Values: APPLIED, ACTIVE, NORMAL, SKIPPED, OFF, ERROR
+
+CLASS: ProcessingStatusIndicator
+--------------------------------
+Status Colors:
+  APPLIED: #28a745 (Green)
+  ACTIVE:  #28a745 (Green)
+  NORMAL:  #6c757d (Gray)
+  SKIPPED: #ffc107 (Yellow)
+  OFF:     #dc3545 (Red)
+  ERROR:   #dc3545 (Red)
+
+Methods:
+  get_status_color(status) -> str
+    - Get hex color code for status background
+    
+  get_text_color(status) -> str
+    - Get hex color code for text
+    
+  render_indicator_html(label, status, tooltip) -> str
+    - Generate HTML for single status indicator
+    
+  get_illumination_status(enabled, applied_this_frame, error) -> str
+    - Returns: APPLIED, NORMAL, OFF, or ERROR
+    
+  get_deblur_status(enabled, applied_this_frame, skipped_sharp, error) -> str
+    - Returns: APPLIED, SKIPPED, OFF, or ERROR
+    
+  get_ocr_status(enabled, active_this_frame, skipped_interval, error) -> str
+    - Returns: ACTIVE, SKIPPED, OFF, or ERROR
+    
+  render_metrics_row_html(...) -> str
+    - Generate complete metrics row HTML
+    - Order: FPS | Latency | Objects | Wagons | Damage | Illum | Deblur | OCR
+
+
+================================================================================
+                         4. DATA MODELS
+================================================================================
+
+BOUNDING BOX
+------------
+Represents detection coordinates.
+
+Fields:
+  x1: int    - Left x-coordinate
+  y1: int    - Top y-coordinate
+  x2: int    - Right x-coordinate
+  y2: int    - Bottom y-coordinate
+
+Properties:
+  width      - x2 - x1
+  height     - y2 - y1
+  center     - ((x1+x2)//2, (y1+y2)//2)
+
+WAGON DETECTION
+---------------
+Result from wagon detector (YOLO #1).
+
+Fields:
+  bbox: BoundingBox      - Detection bounding box
+  confidence: float      - Detection confidence [0.0, 1.0]
+  class_id: int          - Class identifier from model
+
+TRACKED WAGON
+-------------
+Wagon with tracking ID and counting status.
+
+Fields:
+  track_id: int          - Unique tracking ID from ByteTrack
+  bbox: BoundingBox      - Current bounding box
+  confidence: float      - Detection confidence
+  crossed_line: bool     - Whether wagon crossed counting line
+  count_index: int|None  - Index assigned when crossing
+
+DAMAGE DETECTION
+----------------
+Result from damage detector (YOLO #2).
+
+Fields:
+  damage_class: DamageClass  - Type of damage detected
+  bbox: BoundingBox          - Damage bounding box within wagon ROI
+  confidence: float          - Detection confidence [0.0, 1.0]
+  wagon_id: int              - ID of wagon this damage belongs to
+
+OCR RESULT
+----------
+Result from EasyOCR extraction.
+
+Fields:
+  text: str              - Extracted text (may be empty)
+  confidence: float      - OCR confidence [0.0, 1.0]
+  bbox: BoundingBox|None - Text region bounding box (optional)
+
+OCR DETECTION (NEW)
+-------------------
+Represents a single OCR detection with position and confidence.
+
+Fields:
+  text: str              - Detected text string
+  confidence: float      - OCR confidence [0.0, 1.0]
+  bbox: BoundingBox      - ROI-relative coordinates
+  wagon_id: int          - ID of wagon containing this detection
+  frame_index: int       - Video frame index
+
+OCR FRAME METADATA (NEW)
+------------------------
+Metadata saved alongside OCR frames.
+
+Fields:
+  timestamp: str              - ISO format timestamp
+  frame_index: int            - Video frame index
+  wagon_id: int               - Wagon identifier
+  detections: List[Dict]      - List of detection dictionaries
+  deblur_applied: bool        - Whether deblurring was applied
+  illumination_applied: bool  - Whether illumination enhancement was applied
+  blur_score: float|None      - Computed blur score (optional)
+  luminance_level: float|None - Mean luminance level (optional)
+
+WAGON RECORD
+------------
+Complete inspection record for logging.
+
+Fields:
+  timestamp: str              - ISO format timestamp
+  wagon_id: int               - Unique tracking ID
+  count_index: int            - Sequential count index
+  blur_score: float           - Computed blur score
+  frame_index: int            - Video frame index
+  damage_detected: bool       - Whether damage was detected
+  damage_classes: List[str]   - List of damage class names
+  damage_bboxes: List[BBox]   - List of damage bounding boxes
+  ocr_text: str               - Extracted OCR text
+  ocr_confidence: float       - OCR confidence [0.0, 1.0]
+  deblur_applied: bool        - Whether deblurring was applied
+  deblur_source_frame: int|None - Frame index of deblurred ROI source
+
+
+================================================================================
+                    5. PROCESSING PIPELINE FLOW
+================================================================================
+
+FRAME PROCESSING SEQUENCE:
+--------------------------
+
+1. FRAME CAPTURE
+   Input:  Video source (file or RTSP stream)
+   Output: Raw BGR frame (np.ndarray)
+   
+2. CLAHE ENHANCEMENT (Optional)
+   Input:  Raw BGR frame
+   Output: Enhanced BGR frame (L-channel only modified)
+   Note:   Used for detection, preserves color information
+   
+3. WAGON DETECTION
+   Input:  RAW or CLAHE-enhanced frame (NEVER deblurred)
+   Output: List[WagonDetection] with bboxes and confidence
+   Model:  YOLOv11n (damage_detector.pt - contains wagon classes)
+   
+4. WAGON TRACKING
+   Input:  List[WagonDetection], frame_shape
+   Output: List[TrackedWagon] with IDs and crossing status
+   Algorithm: ByteTrack
+   
+5. ROI EXTRACTION
+   Input:  Frame, WagonDetection
+   Output: Wagon ROI (np.ndarray)
+   Note:   Clips to frame boundaries
+   
+6. ROI RESIZING
+   Input:  Wagon ROI
+   Output: Resized ROI (max 256px width), scale_factor
+   Note:   Maintains aspect ratio, no upscaling
+   
+7. BLUR DETECTION
+   Input:  Resized ROI
+   Output: blur_score (float), BlurDecision
+   Method: Laplacian variance
+   
+8. OCR INTERVAL CHECK (NEW)
+   Input:  frame_index, ocr_interval
+   Output: should_run_ocr (bool)
+   Logic:  Run OCR if frame_index % interval == 0
+   
+9. CONDITIONAL DEBLURRING (N-th Frame)
+   Input:  Resized ROI, wagon_id, frame_index
+   Output: Processed ROI (raw or deblurred), deblur_applied, source_frame
+   Logic:
+     - If blur_score >= threshold: return raw ROI
+     - If frame_count % N == 0: run MPRNet, cache result
+     - Else: return cached result
+   
+10. OCR EXTRACTION
+    Input:  Processed ROI (raw or deblurred)
+    Output: OCRResult with text and confidence
+    Engine: EasyOCR with GPU acceleration
+    
+11. OCR VISUALIZATION (NEW)
+    Input:  Frame, OCR detections, wagon bbox, deblur_applied
+    Output: Annotated frame with OCR bounding boxes and text overlays
+    Features:
+      - Cyan bounding boxes around detected text
+      - Text overlays with confidence percentages
+      - Orange text for low confidence (< 50%)
+      - Semi-transparent backgrounds for readability
+    
+12. DAMAGE DETECTION
+    Input:  RAW wagon ROI (NEVER deblurred)
+    Output: List[DamageDetection]
+    Model:  YOLOv11n (wagon_detector.pt - contains damage classes)
+    
+13. OCR FRAME SAVING (NEW)
+    Input:  Annotated frame, OCR detections, metadata
+    Output: Saved JPEG frame + JSON metadata file
+    Trigger: When OCR detects text
+    
+14. LOGGING
+    Input:  All detection results
+    Output: WagonRecord to CSV/JSON
+    Note:   Includes deblur metadata
+
+WAGON EXIT HANDLING:
+--------------------
+When a wagon exits tracking:
+1. DeblurManager.clear_cache(wagon_id) is called
+2. Cached deblurred ROI is freed
+3. Frame counter for wagon is reset
+
+
+================================================================================
+                      6. GPU MEMORY MANAGEMENT
+================================================================================
+
+MEMORY CONSTRAINTS:
+-------------------
+- Target GPU: NVIDIA RTX 3050 (6 GB VRAM)
+- Memory limit: 6 GB
+- Warning threshold: 70% (4.2 GB)
+- Critical threshold: 90% (5.4 GB)
+
+MEMORY OPTIMIZATION STRATEGIES:
+-------------------------------
+
+1. ROI-ONLY DEBLURRING
+   - MPRNet processes only small ROIs (max 256x256 pixels)
+   - Full-frame deblurring is explicitly prohibited
+   - Reduces memory footprint significantly
+
+2. FP16 INFERENCE
+   - MPRNet uses half-precision (FP16) by default
+   - Reduces memory usage by ~50%
+   - Automatic FP32 fallback on numerical instability
+
+3. N-TH FRAME EXECUTION
+   - MPRNet runs every N frames (default: 3)
+   - Cached results reused for intermediate frames
+   - Reduces GPU load while maintaining quality
+
+4. OCR FRAME INTERVAL
+   - OCR runs every N frames (default: 5)
+   - Configurable via dashboard slider (1-30)
+   - Reduces GPU load from EasyOCR
+
+5. BATCH SIZE = 1
+   - MPRNet always uses batch size 1
+   - Prevents memory spikes from batching
+
+6. CACHE MANAGEMENT
+   - Deblurred ROIs cached per wagon
+   - Cache cleared when wagon exits tracking
+   - Prevents memory accumulation
+
+
+================================================================================
+                        7. ERROR HANDLING
+================================================================================
+
+EXCEPTION HIERARCHY:
+--------------------
+PipelineError (base)
+├── ModelNotFoundError      - Model file missing
+├── ModelLoadError          - Model loading failed
+├── VideoSourceError        - Video cannot be opened
+├── StreamConnectionError   - Stream connection failed
+├── ConfigurationError      - Invalid configuration
+├── FrameProcessingError    - Frame processing failed
+├── GPUMemoryError          - GPU memory exhausted
+├── FP16InstabilityError    - FP16 numerical instability
+└── DeblurError             - Deblurring failed
+
+RETRY LOGIC:
+------------
+Stream connections use exponential backoff:
+- Max retries: 3
+- Initial delay: 2 seconds
+- Backoff factor: 2x
+
+GRACEFUL DEGRADATION:
+---------------------
+Components can be disabled after repeated failures:
+- Error count tracked per component
+- Component disabled after 5 consecutive errors
+- Pipeline continues with reduced functionality
+
+
+================================================================================
+                      8. CONFIGURATION REFERENCE
+================================================================================
+
+CONFIGURATION FILE FORMAT (JSON):
+---------------------------------
+{
+  "video_source": "path/to/video.mp4",
+  "blur_threshold": 100.0,
+  "blur_threshold_t1": 100.0,
+  "blur_threshold_t2": 300.0,
+  "wagon_model_path": "models/damage_detector.pt",
+  "damage_model_path": "models/wagon_detector.pt",
+  "mprnet_model_path": "MPRNet/Deblurring/pretrained_models/model_deblurring.pth",
+  "max_roi_width": 256,
+  "deblur_frame_interval": 3,
+  "wagon_confidence_threshold": 0.25,
+  "damage_confidence_threshold": 0.5,
+  "counting_line_position": 0.5,
+  "counting_line_orientation": "vertical",
+  "ocr_gpu_enabled": true,
+  "ocr_language": "en",
+  "ocr_frame_interval": 5,
+  "use_fp16": true,
+  "fp32_fallback": true,
+  "max_batch_size": 1,
+  "enable_threading": true,
+  "output_dir": "outputs",
+  "enable_debug_frames": false,
+  "log_format": ["csv", "json"]
+}
+
+NEW PARAMETERS:
+---------------
+  ocr_frame_interval        - OCR execution interval (1-30)
+                              Run OCR every Nth frame
+                              Default: 5
+
+
+================================================================================
+                         9. API REFERENCE
+================================================================================
+
+COMMAND LINE INTERFACE:
+-----------------------
+
+python main.py [OPTIONS]
+
+Options:
+  --config PATH       Path to configuration JSON file
+  --video PATH        Video file path or stream URL (overrides config)
+  --display           Show video output window with annotations
+  --line FLOAT        Counting line position (0.0-1.0)
+  --orientation STR   Counting line orientation: "vertical" or "horizontal"
+
+DASHBOARD:
+----------
+
+streamlit run run_dashboard.py
+
+Or:
+  python run_dashboard.py
+
+Dashboard Features:
+- Real-time video feed with dual display (raw/processed)
+- OCR bounding box visualization with confidence overlays
+- Processing status indicators (Illumination, Deblur, OCR)
+- OCR frame interval slider (1-30)
+- OCR status display (ACTIVE/SKIPPED)
+- Detection log with OCR results
+- Automatic frame saving with metadata
+
+
+================================================================================
+                         10. DEPENDENCIES
+================================================================================
+
+CORE DEPENDENCIES (requirements.txt):
+-------------------------------------
+
+ultralytics              - YOLOv11 object detection framework
+easyocr                  - EasyOCR text recognition
+torch                    - PyTorch deep learning framework
+torchvision              - PyTorch vision utilities
+opencv-python>=4.9       - OpenCV for image/video processing
+numpy                    - Numerical computing
+hypothesis               - Property-based testing
+pytest                   - Testing framework
+
+DASHBOARD DEPENDENCIES:
+-----------------------
+streamlit>=1.28.0        - Web dashboard framework
+pandas>=2.0.0            - Data manipulation
+
+SYSTEM REQUIREMENTS:
+--------------------
+- Python 3.8+
+- Windows 11 (primary target)
+- NVIDIA GPU with CUDA support (recommended)
+- 6 GB+ VRAM for GPU inference
+- 16 GB+ RAM recommended
+
+
+================================================================================
+                         11. TESTING
+================================================================================
+
+TEST SUITE OVERVIEW:
+--------------------
+The project includes 355+ tests covering all modules with both unit tests
+and property-based tests using Hypothesis.
+
+TEST FILES:
+-----------
+tests/test_app.py                    - Dashboard application tests
+tests/test_blur_detector.py          - Blur detection tests
+tests/test_calibration_manager.py    - Calibration manager tests
+tests/test_clahe.py                  - CLAHE enhancement tests
+tests/test_config.py                 - Configuration tests
+tests/test_damage_detector.py        - Damage detection tests
+tests/test_deblur_manager.py         - Deblur manager tests
+tests/test_dual_display.py           - Dual display tests
+tests/test_frame_saver.py            - Frame saver tests
+tests/test_illumination_controller.py - Illumination controller tests
+tests/test_integration.py            - Integration tests
+tests/test_logger.py                 - Logger tests
+tests/test_metrics.py                - Metrics calculator tests
+tests/test_models.py                 - Data model tests
+tests/test_mprnet_wrapper.py         - MPRNet wrapper tests
+tests/test_nafnet_wrapper.py         - NAFNet wrapper tests
+tests/test_ocr_frame_saver.py        - OCR frame saver tests (NEW)
+tests/test_ocr_interval_controller.py - OCR interval controller tests (NEW)
+tests/test_ocr_log.py                - OCR log tests
+tests/test_ocr_pipeline.py           - OCR pipeline tests
+tests/test_ocr_visualization.py      - OCR visualization tests (NEW)
+tests/test_processing_indicators.py  - Processing indicators tests (NEW)
+tests/test_roi_utils.py              - ROI utility tests
+tests/test_settings_manager.py       - Settings manager tests
+tests/test_styles.py                 - Dashboard styles tests
+tests/test_tracker.py                - Wagon tracker tests
+tests/test_track_renderer.py         - Track renderer tests
+tests/test_video_manager.py          - Video manager tests
+
+RUNNING TESTS:
+--------------
+pytest tests/                        - Run all tests
+pytest tests/test_tracker.py         - Run specific test file
+pytest -v                            - Verbose output
+pytest --hypothesis-show-statistics  - Show property test statistics
+
+PROPERTY-BASED TESTS:
+---------------------
+The project uses Hypothesis for property-based testing to verify:
+- OCR coordinate transformation correctness
+- Confidence-based color selection
+- OCR frame interval execution logic
+- Text truncation behavior
+- Metadata file completeness
+- Processing indicator state consistency
+- Settings persistence round-trip
+
+
+================================================================================
+                         END OF DOCUMENTATION
+================================================================================
+
+For questions or issues, refer to the spec documents:
+- .kiro/specs/railway-wagon-inspection/
+- .kiro/specs/streamlit-dashboard/
+- .kiro/specs/ocr-visual-enhancements/
+- .kiro/specs/dashboard-enhancements/
+
+================================================================================
