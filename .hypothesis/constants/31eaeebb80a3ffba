@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\tracking\tracker.py
+# hypothesis_version: 6.148.7
+
+[0.0, 0.5, 0.8, 1.0, 'bbox', 'class_id', 'cls', 'conf', 'confidence', 'score', 'tlwh', 'track_id', 'xywh', 'xyxy']

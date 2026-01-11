@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\pipelines\nafnet_wrapper.py
+# hypothesis_version: 6.148.7
+
+[-0.5, 255, 480, 640, 'ROI cannot be None', 'ROI cannot be empty', 'allocated', 'cuda', 'max_allocated', 'reserved']

@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:08:33.441331",
+  "frame_index": 765,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "MAEREK",
+      "confidence": 0.47378732975995885,
+      "bbox": {
+        "x1": 147,
+        "y1": 63,
+        "x2": 247,
+        "y2": 105
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 738.5726105444061
+}

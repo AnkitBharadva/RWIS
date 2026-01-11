@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\utils\settings_manager.py
+# hypothesis_version: 6.150.0
+
+[1.0, 25.0, 50.0, 100.0, 100, 255, 'blur_auto_mode', 'blur_percentile', 'blur_threshold', 'deblur_enabled', 'en', 'gamma_value', 'low_light_threshold', 'luminance_percentile', 'ocr_gpu_enabled', 'ocr_language', 'r', 'w']

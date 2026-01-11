@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:08:31.178125",
+  "frame_index": 760,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "SK",
+      "confidence": 0.8619546452417863,
+      "bbox": {
+        "x1": 0,
+        "y1": 75,
+        "x2": 163,
+        "y2": 183
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 751.945300563105
+}

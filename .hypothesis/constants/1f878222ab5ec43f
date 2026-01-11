@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\dashboard\processing_indicators.py
+# hypothesis_version: 6.150.0
+
+['#000000', '#28a745', '#6c757d', '#dc3545', '#ff4b4b', '#ffc107', '#ffffff', 'ACTIVE', 'ALERT', 'APPLIED', 'ERROR', 'NORMAL', 'OFF', 'OK', 'SKIPPED']

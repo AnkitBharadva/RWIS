@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:09:56.370551",
+  "frame_index": 1035,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "VAEREK",
+      "confidence": 0.7689151519911813,
+      "bbox": {
+        "x1": 0,
+        "y1": 65,
+        "x2": 241,
+        "y2": 129
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 600.8043707198991
+}

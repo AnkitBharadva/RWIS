@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\pipelines\mprnet_wrapper.py
+# hypothesis_version: 6.150.0
+
+[255.0, 255, 256, 'Deblurring', 'MPRNet', 'MPRNet.py', 'ROI cannot be None', 'ROI cannot be empty', 'allocated', 'cpu', 'cuda', 'decoder', 'encoder', 'max_allocated', 'module.', 'reflect', 'reserved', 'stage', 'state_dict', 'torch.Tensor']

@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:08:48.023333",
+  "frame_index": 805,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "IBURGL",
+      "confidence": 0.3506006418453336,
+      "bbox": {
+        "x1": 0,
+        "y1": 68,
+        "x2": 178,
+        "y2": 120
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 618.795823326111
+}

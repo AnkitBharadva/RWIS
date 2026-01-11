@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:07:41.866438",
+  "frame_index": 600,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "RSK ANp",
+      "confidence": 0.3752749957110718,
+      "bbox": {
+        "x1": 0,
+        "y1": 43,
+        "x2": 199,
+        "y2": 129
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 757.1659356670508
+}

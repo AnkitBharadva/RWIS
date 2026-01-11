@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\dashboard\frame_saver.py
+# hypothesis_version: 6.150.0
+
+['%Y%m%d_%H%M%S_%f', '.json', '_', 'frame_index', 'processing_applied', 'raw', 'timestamp', 'w', 'wagon_id']

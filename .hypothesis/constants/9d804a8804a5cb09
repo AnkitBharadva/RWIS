@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\pipelines\ocr_pipeline.py
+# hypothesis_version: 6.150.0
+
+[0.0, 0.5, 1.0, 1.5, 255.0, 255, 256, 'CUDA_VISIBLE_DEVICES', 'ROI cannot be None', 'dt_polys', 'en', 'ocr', 'predict', 'rec_scores', 'rec_texts', 'size']

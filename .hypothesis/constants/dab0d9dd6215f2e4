@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\dashboard\app.py
+# hypothesis_version: 6.150.0
+
+[0.0, 0.03, 0.05, 0.1, 0.5, 0.8, 1.0, 200, 255, '%Y-%m-%d %H:%M:%S', 'ALERT', 'Confidence', 'Confidence Threshold', 'Connected', 'DAMAGE DETECTED', 'Damage', 'Damage Type', 'Disconnected', 'Error', 'FPS', 'Frame Skip', 'Latency (ms)', 'Live Video Feed', 'Model Settings', 'NORMAL', 'OK', 'Objects', 'RGB', 'Status', 'Stream Control', 'Timestamp', 'Total Wagons', 'Video Source', 'Wagon ID', '_', '__main__', 'color', 'confidence_threshold', 'connection_status', 'css_class', 'damage_detector', 'delta_color', 'detection_log', 'expanded', 'frame_index', 'frame_skip', 'green', 'inverse', 'is_running', 'last_frame', 'metrics_calculator', 'normal', 'red', 'status-alert', 'status-normal', 'stop_main', 'text', 'total_wagon_count', 'video_manager', 'video_source', 'wagon_detector', 'wide', '⏹️ Stop', '⏹️ Stop Processing', '▶️ Start', '⚙️ Controls', '📋 Detection Log', '🚂']

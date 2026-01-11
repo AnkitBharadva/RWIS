@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\pipelines\ocr_pipeline.py
+# hypothesis_version: 6.150.0
+
+[0.0, 1.0, 1.5, 255.0, 255, 256, 'CUDA_VISIBLE_DEVICES', 'dt_polys', 'en', 'rec_scores', 'rec_texts']

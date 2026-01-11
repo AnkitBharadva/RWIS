@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\dashboard\ocr_frame_saver.py
+# hypothesis_version: 6.150.0
+
+['%Y%m%d_%H%M%S_%f', '.json', 'blur_score', 'deblur_applied', 'detections', 'frame_index', 'illumination_applied', 'luminance_level', 'outputs/ocr_frames', 'timestamp', 'w', 'wagon_id']

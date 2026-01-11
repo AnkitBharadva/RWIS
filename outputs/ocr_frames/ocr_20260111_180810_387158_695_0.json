@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:08:10.387158",
+  "frame_index": 695,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "R0 Nedlloyd",
+      "confidence": 0.6413766535666615,
+      "bbox": {
+        "x1": 0,
+        "y1": 77,
+        "x2": 177,
+        "y2": 113
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 668.8443114259497
+}

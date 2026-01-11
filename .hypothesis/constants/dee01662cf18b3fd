@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\dashboard\ocr_log.py
+# hypothesis_version: 6.150.0
+
+[200, 500, '%Y-%m-%d %H:%M:%S', 'Confidence', 'Extracted Text', 'Frame', 'Timestamp', 'Wagon ID', '📝 OCR Log']

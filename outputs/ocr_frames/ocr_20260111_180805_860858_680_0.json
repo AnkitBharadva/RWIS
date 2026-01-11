@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:08:05.860858",
+  "frame_index": 680,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "CMACGH",
+      "confidence": 0.6173102626742614,
+      "bbox": {
+        "x1": 150,
+        "y1": 78,
+        "x2": 216,
+        "y2": 102
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 682.6967064741051
+}

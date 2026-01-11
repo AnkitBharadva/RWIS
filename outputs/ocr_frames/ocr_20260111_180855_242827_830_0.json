@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:08:55.242827",
+  "frame_index": 830,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "MAERSK SeALA",
+      "confidence": 0.4635650649808313,
+      "bbox": {
+        "x1": 66,
+        "y1": 53,
+        "x2": 235,
+        "y2": 106
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 675.4441605718529
+}

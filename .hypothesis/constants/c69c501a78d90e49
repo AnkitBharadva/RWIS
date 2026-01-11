@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\pipelines\deblur_manager.py
+# hypothesis_version: 6.148.7
+
+[256, 'BlurDetector', 'MPRNetDeblur']

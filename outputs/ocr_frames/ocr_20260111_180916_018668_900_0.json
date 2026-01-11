@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:09:16.018668",
+  "frame_index": 900,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "Seaco",
+      "confidence": 0.597044655636242,
+      "bbox": {
+        "x1": 21,
+        "y1": 25,
+        "x2": 105,
+        "y2": 61
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 731.3495887585382
+}

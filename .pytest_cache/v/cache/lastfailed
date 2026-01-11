@@ -1,0 +1,18 @@
+{
+  "tests/test_ocr_pipeline.py::TestOCRPipelineWithMockedPaddleOCR::test_successful_ocr_extraction": true,
+  "tests/test_deblur_manager.py::TestNthFrameExecutionLogic::test_mprnet_runs_at_correct_intervals": true,
+  "tests/test_deblur_manager.py::TestNthFrameExecutionLogic::test_cache_reused_on_intermediate_frames": true,
+  "tests/test_deblur_manager.py::TestNthFrameExecutionLogic::test_cache_cleared_on_wagon_exit": true,
+  "tests/test_deblur_manager.py::TestNthFrameExecutionLogic::test_independent_caches_per_wagon": true,
+  "tests/test_deblur_manager.py::TestNthFrameExecutionLogic::test_first_frame_always_runs_mprnet": true,
+  "tests/test_deblur_manager.py::TestDeblurManagerValidation::test_clear_all_caches": true,
+  "tests/test_deblur_manager.py::TestDeblurManagerValidation::test_roi_resizing_applied": true,
+  "tests/test_deblur_manager.py::TestDeblurEnableDisable::test_enabled_deblur_follows_threshold_logic": true,
+  "tests/test_deblur_manager.py::TestDeblurEnableDisable::test_toggle_deblur_enabled": true,
+  "tests/test_deblur_manager.py::TestDeblurEnableDisable::test_was_deblur_applied_method": true,
+  "tests/test_deblur_manager.py::TestDeblurOperationLogging::test_deblur_status_contains_required_fields": true,
+  "tests/test_deblur_manager.py::TestDeblurOperationLogging::test_deblur_status_frame_index_non_negative": true,
+  "tests/test_deblur_manager.py::TestDeblurOperationLogging::test_deblur_status_wagon_id_positive": true,
+  "tests/test_deblur_manager.py::TestDeblurOperationLogging::test_blur_score_before_matches_computed_score": true,
+  "tests/test_deblur_manager.py::TestDeblurOperationLogging::test_status_text_property": true
+}

@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\config.py
+# hypothesis_version: 6.150.0
+
+[0.0, 0.25, 0.5, 1.0, 100.0, 300.0, 256, 'csv', 'en', 'horizontal', 'json', 'outputs', 'r', 'vertical', 'w']

@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-11T18:09:08.445007",
+  "frame_index": 875,
+  "wagon_id": 0,
+  "detections": [
+    {
+      "text": "IAMBURG KLd",
+      "confidence": 0.608724411065909,
+      "bbox": {
+        "x1": 0,
+        "y1": 56,
+        "x2": 196,
+        "y2": 110
+      }
+    }
+  ],
+  "deblur_applied": false,
+  "illumination_applied": false,
+  "blur_score": 644.2363093518279
+}

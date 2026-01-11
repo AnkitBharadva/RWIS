@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\utils\data_models.py
+# hypothesis_version: 6.148.7
+
+['deformation', 'door_damage', 'floor_damage', 'no_deblur', 'roi_deblur', 'skip_deblur', 'structural_crack']

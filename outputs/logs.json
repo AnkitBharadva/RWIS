@@ -1,0 +1,4618 @@
+[
+  {
+    "timestamp": "2026-01-09T00:30:43.422480",
+    "wagon_id": 55,
+    "count_index": 1,
+    "blur_score": 1684.8831835930716,
+    "frame_index": 1587,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 14,
+        "y1": 83,
+        "x2": 364,
+        "y2": 328
+      },
+      {
+        "x1": 360,
+        "y1": 155,
+        "x2": 443,
+        "y2": 303
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:30:45.790448",
+    "wagon_id": 121,
+    "count_index": 2,
+    "blur_score": 1388.1399535154994,
+    "frame_index": 1657,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:30:45.869633",
+    "wagon_id": 124,
+    "count_index": 3,
+    "blur_score": 1603.5164562724074,
+    "frame_index": 1659,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 31,
+        "y1": 95,
+        "x2": 452,
+        "y2": 361
+      },
+      {
+        "x1": 441,
+        "y1": 192,
+        "x2": 535,
+        "y2": 324
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:30:47.957667",
+    "wagon_id": 170,
+    "count_index": 4,
+    "blur_score": 1511.0361674815153,
+    "frame_index": 1722,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 102,
+        "y1": 95,
+        "x2": 271,
+        "y2": 277
+      },
+      {
+        "x1": 266,
+        "y1": 145,
+        "x2": 326,
+        "y2": 245
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:30:48.365626",
+    "wagon_id": 183,
+    "count_index": 5,
+    "blur_score": 1733.6759398521767,
+    "frame_index": 1733,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 101,
+        "y1": 163,
+        "x2": 424,
+        "y2": 395
+      },
+      {
+        "x1": 421,
+        "y1": 249,
+        "x2": 499,
+        "y2": 363
+      },
+      {
+        "x1": 492,
+        "y1": 257,
+        "x2": 532,
+        "y2": 346
+      },
+      {
+        "x1": 0,
+        "y1": 155,
+        "x2": 116,
+        "y2": 395
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:30:50.394932",
+    "wagon_id": 229,
+    "count_index": 6,
+    "blur_score": 1204.2904448986346,
+    "frame_index": 1795,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:30:53.113442",
+    "wagon_id": 279,
+    "count_index": 7,
+    "blur_score": 1688.2234245036325,
+    "frame_index": 1877,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 5,
+        "y1": 91,
+        "x2": 282,
+        "y2": 327
+      },
+      {
+        "x1": 275,
+        "y1": 144,
+        "x2": 380,
+        "y2": 323
+      },
+      {
+        "x1": 371,
+        "y1": 158,
+        "x2": 462,
+        "y2": 291
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:30:55.474950",
+    "wagon_id": 329,
+    "count_index": 8,
+    "blur_score": 1028.795055314406,
+    "frame_index": 1950,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 11,
+        "y1": 48,
+        "x2": 261,
+        "y2": 252
+      },
+      {
+        "x1": 252,
+        "y1": 114,
+        "x2": 327,
+        "y2": 252
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:30:57.912737",
+    "wagon_id": 363,
+    "count_index": 9,
+    "blur_score": 867.7174689281552,
+    "frame_index": 2024,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 29,
+        "y1": 0,
+        "x2": 316,
+        "y2": 219
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:00.361270",
+    "wagon_id": 441,
+    "count_index": 10,
+    "blur_score": 963.8766614751911,
+    "frame_index": 2099,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 75,
+        "y2": 99
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:00.454682",
+    "wagon_id": 443,
+    "count_index": 11,
+    "blur_score": 1674.5385098184972,
+    "frame_index": 2101,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 119,
+        "y1": 159,
+        "x2": 443,
+        "y2": 397
+      },
+      {
+        "x1": 440,
+        "y1": 238,
+        "x2": 516,
+        "y2": 362
+      },
+      {
+        "x1": 511,
+        "y1": 261,
+        "x2": 549,
+        "y2": 346
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:02.569166",
+    "wagon_id": 506,
+    "count_index": 12,
+    "blur_score": 1842.5848545986744,
+    "frame_index": 2164,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 101,
+        "x2": 297,
+        "y2": 417
+      },
+      {
+        "x1": 304,
+        "y1": 194,
+        "x2": 506,
+        "y2": 417
+      },
+      {
+        "x1": 560,
+        "y1": 272,
+        "x2": 597,
+        "y2": 352
+      },
+      {
+        "x1": 500,
+        "y1": 255,
+        "x2": 566,
+        "y2": 368
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:02.869724",
+    "wagon_id": 509,
+    "count_index": 13,
+    "blur_score": 1966.367786085328,
+    "frame_index": 2172,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 15,
+        "y1": 30,
+        "x2": 320,
+        "y2": 268
+      },
+      {
+        "x1": 317,
+        "y1": 111,
+        "x2": 396,
+        "y2": 238
+      },
+      {
+        "x1": 426,
+        "y1": 144,
+        "x2": 450,
+        "y2": 205
+      },
+      {
+        "x1": 391,
+        "y1": 132,
+        "x2": 431,
+        "y2": 220
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:05.206458",
+    "wagon_id": 584,
+    "count_index": 14,
+    "blur_score": 1311.9428879449295,
+    "frame_index": 2244,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 303,
+        "y1": 163,
+        "x2": 398,
+        "y2": 296
+      },
+      {
+        "x1": 7,
+        "y1": 77,
+        "x2": 313,
+        "y2": 319
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:05.764128",
+    "wagon_id": 597,
+    "count_index": 15,
+    "blur_score": 1662.8247307523677,
+    "frame_index": 2260,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:07.486301",
+    "wagon_id": 646,
+    "count_index": 16,
+    "blur_score": 1732.0719372402846,
+    "frame_index": 2311,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 98,
+        "x2": 273,
+        "y2": 399
+      },
+      {
+        "x1": 270,
+        "y1": 178,
+        "x2": 472,
+        "y2": 399
+      },
+      {
+        "x1": 465,
+        "y1": 228,
+        "x2": 530,
+        "y2": 349
+      },
+      {
+        "x1": 520,
+        "y1": 246,
+        "x2": 557,
+        "y2": 336
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:10.117620",
+    "wagon_id": 715,
+    "count_index": 17,
+    "blur_score": 1719.5690924048424,
+    "frame_index": 2389,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 3,
+        "y1": 59,
+        "x2": 282,
+        "y2": 288
+      },
+      {
+        "x1": 278,
+        "y1": 136,
+        "x2": 356,
+        "y2": 257
+      },
+      {
+        "x1": 352,
+        "y1": 156,
+        "x2": 387,
+        "y2": 230
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:12.483312",
+    "wagon_id": 764,
+    "count_index": 18,
+    "blur_score": 1609.9410341215366,
+    "frame_index": 2462,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 69,
+        "y1": 124,
+        "x2": 326,
+        "y2": 315
+      },
+      {
+        "x1": 0,
+        "y1": 91,
+        "x2": 92,
+        "y2": 315
+      },
+      {
+        "x1": 322,
+        "y1": 174,
+        "x2": 386,
+        "y2": 288
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:12.652543",
+    "wagon_id": 767,
+    "count_index": 19,
+    "blur_score": 959.0599326912205,
+    "frame_index": 2466,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:14.950672",
+    "wagon_id": 838,
+    "count_index": 20,
+    "blur_score": 2248.6256056772227,
+    "frame_index": 2536,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 13,
+        "y1": 46,
+        "x2": 287,
+        "y2": 272
+      },
+      {
+        "x1": 286,
+        "y1": 110,
+        "x2": 360,
+        "y2": 238
+      },
+      {
+        "x1": 0,
+        "y1": 49,
+        "x2": 28,
+        "y2": 272
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:17.419830",
+    "wagon_id": 903,
+    "count_index": 21,
+    "blur_score": 1922.0339164656084,
+    "frame_index": 2613,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 38,
+        "y1": 60,
+        "x2": 495,
+        "y2": 340
+      },
+      {
+        "x1": 486,
+        "y1": 174,
+        "x2": 585,
+        "y2": 292
+      },
+      {
+        "x1": 584,
+        "y1": 190,
+        "x2": 621,
+        "y2": 272
+      },
+      {
+        "x1": 0,
+        "y1": 43,
+        "x2": 62,
+        "y2": 340
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:19.590290",
+    "wagon_id": 924,
+    "count_index": 22,
+    "blur_score": 5146.167853495603,
+    "frame_index": 2680,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 1,
+        "y1": 0,
+        "x2": 91,
+        "y2": 78
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:19.673002",
+    "wagon_id": 925,
+    "count_index": 23,
+    "blur_score": 1637.5660947971196,
+    "frame_index": 2682,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 2,
+        "y1": 88,
+        "x2": 245,
+        "y2": 301
+      },
+      {
+        "x1": 239,
+        "y1": 158,
+        "x2": 312,
+        "y2": 281
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:21.812199",
+    "wagon_id": 974,
+    "count_index": 24,
+    "blur_score": 1780.8438629899736,
+    "frame_index": 2750,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 173,
+        "y1": 122,
+        "x2": 436,
+        "y2": 357
+      },
+      {
+        "x1": 0,
+        "y1": 93,
+        "x2": 188,
+        "y2": 357
+      },
+      {
+        "x1": 430,
+        "y1": 177,
+        "x2": 504,
+        "y2": 292
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:23.889737",
+    "wagon_id": 1022,
+    "count_index": 25,
+    "blur_score": 2237.8467134078965,
+    "frame_index": 2815,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 321,
+        "y1": 133,
+        "x2": 513,
+        "y2": 322
+      },
+      {
+        "x1": 0,
+        "y1": 42,
+        "x2": 328,
+        "y2": 326
+      },
+      {
+        "x1": 507,
+        "y1": 176,
+        "x2": 562,
+        "y2": 286
+      },
+      {
+        "x1": 555,
+        "y1": 191,
+        "x2": 591,
+        "y2": 264
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:26.682548",
+    "wagon_id": 1074,
+    "count_index": 26,
+    "blur_score": 1372.5519605674888,
+    "frame_index": 2903,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 23,
+        "y1": 100,
+        "x2": 361,
+        "y2": 359
+      },
+      {
+        "x1": 356,
+        "y1": 186,
+        "x2": 442,
+        "y2": 317
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:28.896562",
+    "wagon_id": 1121,
+    "count_index": 27,
+    "blur_score": 1282.5597593302493,
+    "frame_index": 2972,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 12,
+        "y1": 82,
+        "x2": 359,
+        "y2": 357
+      },
+      {
+        "x1": 346,
+        "y1": 178,
+        "x2": 429,
+        "y2": 320
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:29.562592",
+    "wagon_id": 1142,
+    "count_index": 28,
+    "blur_score": 1773.9653713673442,
+    "frame_index": 2991,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:30.911064",
+    "wagon_id": 1173,
+    "count_index": 29,
+    "blur_score": 1580.9024403925173,
+    "frame_index": 3033,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 114,
+        "x2": 330,
+        "y2": 410
+      },
+      {
+        "x1": 335,
+        "y1": 206,
+        "x2": 487,
+        "y2": 399
+      },
+      {
+        "x1": 478,
+        "y1": 249,
+        "x2": 536,
+        "y2": 357
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:31:50.388767",
+    "wagon_id": 1307,
+    "count_index": 30,
+    "blur_score": 2026.0055498075155,
+    "frame_index": 3648,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:06.735978",
+    "wagon_id": 1320,
+    "count_index": 31,
+    "blur_score": 700.8058827886241,
+    "frame_index": 4160,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:06.904081",
+    "wagon_id": 1325,
+    "count_index": 32,
+    "blur_score": 1057.1834123137446,
+    "frame_index": 4164,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:08.782596",
+    "wagon_id": 1371,
+    "count_index": 33,
+    "blur_score": 1023.4069404166086,
+    "frame_index": 4221,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 762,
+        "y1": 12,
+        "x2": 1247,
+        "y2": 662
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:10.583368",
+    "wagon_id": 1419,
+    "count_index": 34,
+    "blur_score": 2.1268515014194844,
+    "frame_index": 4275,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:11.932158",
+    "wagon_id": 1455,
+    "count_index": 35,
+    "blur_score": 1011.5185303034037,
+    "frame_index": 4315,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 764,
+        "y1": 1,
+        "x2": 1264,
+        "y2": 684
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:13.073078",
+    "wagon_id": 1478,
+    "count_index": 36,
+    "blur_score": 14.43933682360286,
+    "frame_index": 4349,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:13.906569",
+    "wagon_id": 1502,
+    "count_index": 37,
+    "blur_score": 736.1274721420257,
+    "frame_index": 4375,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:15.881346",
+    "wagon_id": 1551,
+    "count_index": 38,
+    "blur_score": 996.6401235162348,
+    "frame_index": 4437,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 695,
+        "y1": 32,
+        "x2": 1088,
+        "y2": 662
+      },
+      {
+        "x1": 1056,
+        "y1": 45,
+        "x2": 1271,
+        "y2": 648
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:16.040429",
+    "wagon_id": 1556,
+    "count_index": 39,
+    "blur_score": 8.245693828127186,
+    "frame_index": 4441,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:17.945749",
+    "wagon_id": 1609,
+    "count_index": 40,
+    "blur_score": 841.4579005304955,
+    "frame_index": 4501,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 848,
+        "y1": 24,
+        "x2": 1240,
+        "y2": 598
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:18.592065",
+    "wagon_id": 1630,
+    "count_index": 41,
+    "blur_score": 5.372475629264925,
+    "frame_index": 4520,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:20.178964",
+    "wagon_id": 1678,
+    "count_index": 42,
+    "blur_score": 777.7805232304955,
+    "frame_index": 4570,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 778,
+        "y1": 11,
+        "x2": 1229,
+        "y2": 646
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:21.212098",
+    "wagon_id": 1710,
+    "count_index": 43,
+    "blur_score": 10.192623011711147,
+    "frame_index": 4602,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:22.595038",
+    "wagon_id": 1736,
+    "count_index": 44,
+    "blur_score": 881.4757488782432,
+    "frame_index": 4644,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 1093,
+        "y1": 8,
+        "x2": 1267,
+        "y2": 672
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:24.709686",
+    "wagon_id": 1782,
+    "count_index": 45,
+    "blur_score": 2.7627029205554163,
+    "frame_index": 4708,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:24.818370",
+    "wagon_id": 1785,
+    "count_index": 46,
+    "blur_score": 831.5775956295427,
+    "frame_index": 4711,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 924,
+        "y1": 7,
+        "x2": 1244,
+        "y2": 631
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:26.991935",
+    "wagon_id": 1842,
+    "count_index": 47,
+    "blur_score": 687.5323002354196,
+    "frame_index": 4779,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 746,
+        "y1": 35,
+        "x2": 1132,
+        "y2": 669
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:27.383541",
+    "wagon_id": 1855,
+    "count_index": 48,
+    "blur_score": 8.024463009225824,
+    "frame_index": 4791,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:28.927035",
+    "wagon_id": 1905,
+    "count_index": 49,
+    "blur_score": 665.3032029305795,
+    "frame_index": 4839,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 724,
+        "y1": 89,
+        "x2": 1110,
+        "y2": 680
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:30.986469",
+    "wagon_id": 1959,
+    "count_index": 50,
+    "blur_score": 884.2052271531973,
+    "frame_index": 4902,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 699,
+        "y1": 79,
+        "x2": 1266,
+        "y2": 642
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:31.092115",
+    "wagon_id": 1961,
+    "count_index": 51,
+    "blur_score": 2.610664102791219,
+    "frame_index": 4904,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:33.123259",
+    "wagon_id": 2017,
+    "count_index": 52,
+    "blur_score": 825.3152216616058,
+    "frame_index": 4965,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 713,
+        "y1": 177,
+        "x2": 1265,
+        "y2": 495
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:35.026746",
+    "wagon_id": 2063,
+    "count_index": 53,
+    "blur_score": 697.1584265053543,
+    "frame_index": 5025,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 1040,
+        "y1": 153,
+        "x2": 1149,
+        "y2": 652
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:37.121744",
+    "wagon_id": 2112,
+    "count_index": 54,
+    "blur_score": 840.210416385752,
+    "frame_index": 5089,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 794,
+        "y1": 1,
+        "x2": 1254,
+        "y2": 596
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:39.078777",
+    "wagon_id": 2163,
+    "count_index": 55,
+    "blur_score": 869.975930669429,
+    "frame_index": 5150,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 639,
+        "y1": 18,
+        "x2": 1278,
+        "y2": 714
+      },
+      {
+        "x1": 879,
+        "y1": 23,
+        "x2": 1277,
+        "y2": 715
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:41.133937",
+    "wagon_id": 2215,
+    "count_index": 56,
+    "blur_score": 663.2070495821409,
+    "frame_index": 5214,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:41.941409",
+    "wagon_id": 2226,
+    "count_index": 57,
+    "blur_score": 10.665512559093914,
+    "frame_index": 5238,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:43.138218",
+    "wagon_id": 2252,
+    "count_index": 58,
+    "blur_score": 782.4412886744302,
+    "frame_index": 5274,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 907,
+        "y1": 12,
+        "x2": 1216,
+        "y2": 619
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:45.131062",
+    "wagon_id": 2289,
+    "count_index": 59,
+    "blur_score": 497.50940755759774,
+    "frame_index": 5334,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 868,
+        "y1": 0,
+        "x2": 1073,
+        "y2": 684
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:45.843490",
+    "wagon_id": 2310,
+    "count_index": 60,
+    "blur_score": 10.051625465684591,
+    "frame_index": 5354,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 211,
+        "y1": 291,
+        "x2": 478,
+        "y2": 445
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:47.571046",
+    "wagon_id": 2356,
+    "count_index": 61,
+    "blur_score": 891.389453047149,
+    "frame_index": 5407,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:48.858338",
+    "wagon_id": 2386,
+    "count_index": 62,
+    "blur_score": 18.380762246643272,
+    "frame_index": 5446,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:50.056746",
+    "wagon_id": 2416,
+    "count_index": 63,
+    "blur_score": 918.8228317353686,
+    "frame_index": 5483,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 489,
+        "y1": 3,
+        "x2": 1274,
+        "y2": 689
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:51.955962",
+    "wagon_id": 2451,
+    "count_index": 64,
+    "blur_score": 7.808333550671206,
+    "frame_index": 5538,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:52.252625",
+    "wagon_id": 2462,
+    "count_index": 65,
+    "blur_score": 833.9019012988203,
+    "frame_index": 5547,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 707,
+        "y1": 45,
+        "x2": 1266,
+        "y2": 692
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:54.808225",
+    "wagon_id": 2532,
+    "count_index": 66,
+    "blur_score": 823.4534114341932,
+    "frame_index": 5622,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:56.758025",
+    "wagon_id": 2588,
+    "count_index": 67,
+    "blur_score": 625.460566305406,
+    "frame_index": 5682,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:58.887810",
+    "wagon_id": 2643,
+    "count_index": 68,
+    "blur_score": 857.5912892985409,
+    "frame_index": 5746,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 886,
+        "y1": 7,
+        "x2": 1272,
+        "y2": 654
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:32:59.567913",
+    "wagon_id": 2663,
+    "count_index": 69,
+    "blur_score": 6.839633732696852,
+    "frame_index": 5766,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:33:00.995400",
+    "wagon_id": 2700,
+    "count_index": 70,
+    "blur_score": 869.1296265445109,
+    "frame_index": 5806,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 627,
+        "y1": 224,
+        "x2": 1276,
+        "y2": 635
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:33:03.298981",
+    "wagon_id": 2758,
+    "count_index": 71,
+    "blur_score": 6.17555518818349,
+    "frame_index": 5869,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:33:05.525001",
+    "wagon_id": 2801,
+    "count_index": 72,
+    "blur_score": 0.0,
+    "frame_index": 5932,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 12,
+        "x2": 399,
+        "y2": 487
+      },
+      {
+        "x1": 0,
+        "y1": 479,
+        "x2": 500,
+        "y2": 637
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:33:45.957485",
+    "wagon_id": 2885,
+    "count_index": 73,
+    "blur_score": 258.47882252332346,
+    "frame_index": 7184,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 7184
+  },
+  {
+    "timestamp": "2026-01-09T00:33:49.238795",
+    "wagon_id": 2902,
+    "count_index": 74,
+    "blur_score": 1242.010876217871,
+    "frame_index": 7286,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:33:49.727854",
+    "wagon_id": 2903,
+    "count_index": 75,
+    "blur_score": 172.19438448163882,
+    "frame_index": 7297,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 7297
+  },
+  {
+    "timestamp": "2026-01-09T00:33:52.159938",
+    "wagon_id": 2912,
+    "count_index": 76,
+    "blur_score": 809.4337010683139,
+    "frame_index": 7373,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:33:55.330770",
+    "wagon_id": 2947,
+    "count_index": 77,
+    "blur_score": 166.6537489254903,
+    "frame_index": 7462,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 7462
+  },
+  {
+    "timestamp": "2026-01-09T00:33:55.750110",
+    "wagon_id": 2961,
+    "count_index": 78,
+    "blur_score": 3255.7160976608866,
+    "frame_index": 7474,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 91,
+        "x2": 508,
+        "y2": 423
+      },
+      {
+        "x1": 480,
+        "y1": 141,
+        "x2": 761,
+        "y2": 423
+      },
+      {
+        "x1": 757,
+        "y1": 182,
+        "x2": 885,
+        "y2": 337
+      },
+      {
+        "x1": 871,
+        "y1": 200,
+        "x2": 933,
+        "y2": 316
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:33:56.212266",
+    "wagon_id": 2964,
+    "count_index": 79,
+    "blur_score": 2881.1706133364837,
+    "frame_index": 7487,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 70,
+        "y1": 214,
+        "x2": 450,
+        "y2": 430
+      },
+      {
+        "x1": 439,
+        "y1": 256,
+        "x2": 575,
+        "y2": 430
+      },
+      {
+        "x1": 640,
+        "y1": 291,
+        "x2": 686,
+        "y2": 396
+      },
+      {
+        "x1": 571,
+        "y1": 283,
+        "x2": 648,
+        "y2": 408
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:33:57.507608",
+    "wagon_id": 3002,
+    "count_index": 80,
+    "blur_score": 182.83687218454858,
+    "frame_index": 7522,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 7522
+  },
+  {
+    "timestamp": "2026-01-09T00:34:00.197515",
+    "wagon_id": 3034,
+    "count_index": 81,
+    "blur_score": 165.1009078934689,
+    "frame_index": 7601,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 7601
+  },
+  {
+    "timestamp": "2026-01-09T00:34:01.661491",
+    "wagon_id": 3073,
+    "count_index": 82,
+    "blur_score": 2357.723704521938,
+    "frame_index": 7645,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 24,
+        "y1": 25,
+        "x2": 332,
+        "y2": 261
+      },
+      {
+        "x1": 319,
+        "y1": 51,
+        "x2": 441,
+        "y2": 230
+      },
+      {
+        "x1": 0,
+        "y1": 4,
+        "x2": 74,
+        "y2": 261
+      },
+      {
+        "x1": 430,
+        "y1": 67,
+        "x2": 480,
+        "y2": 195
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:34:03.042289",
+    "wagon_id": 3075,
+    "count_index": 83,
+    "blur_score": 175.50767831191135,
+    "frame_index": 7683,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 7683
+  },
+  {
+    "timestamp": "2026-01-09T00:34:05.104430",
+    "wagon_id": 3112,
+    "count_index": 84,
+    "blur_score": 203.39605404794227,
+    "frame_index": 7743,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 7743
+  },
+  {
+    "timestamp": "2026-01-09T00:34:12.135521",
+    "wagon_id": 3128,
+    "count_index": 85,
+    "blur_score": 220.03753642512183,
+    "frame_index": 7956,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 7956
+  },
+  {
+    "timestamp": "2026-01-09T00:34:14.281581",
+    "wagon_id": 3145,
+    "count_index": 86,
+    "blur_score": 205.8053345538896,
+    "frame_index": 8019,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8019
+  },
+  {
+    "timestamp": "2026-01-09T00:34:14.593406",
+    "wagon_id": 3162,
+    "count_index": 87,
+    "blur_score": 1525.886029166479,
+    "frame_index": 8028,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 56,
+        "y1": 10,
+        "x2": 399,
+        "y2": 231
+      },
+      {
+        "x1": 389,
+        "y1": 18,
+        "x2": 417,
+        "y2": 184
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:34:16.900785",
+    "wagon_id": 3230,
+    "count_index": 88,
+    "blur_score": 171.2704421119942,
+    "frame_index": 8096,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8096
+  },
+  {
+    "timestamp": "2026-01-09T00:34:17.109527",
+    "wagon_id": 3238,
+    "count_index": 89,
+    "blur_score": 1396.6605879798053,
+    "frame_index": 8102,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 44,
+        "y1": 14,
+        "x2": 405,
+        "y2": 247
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:34:19.046825",
+    "wagon_id": 3255,
+    "count_index": 90,
+    "blur_score": 188.68152223477676,
+    "frame_index": 8159,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8159
+  },
+  {
+    "timestamp": "2026-01-09T00:34:19.868654",
+    "wagon_id": 3292,
+    "count_index": 91,
+    "blur_score": 1313.7100169483838,
+    "frame_index": 8185,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 49,
+        "y1": 32,
+        "x2": 397,
+        "y2": 276
+      },
+      {
+        "x1": 0,
+        "y1": 16,
+        "x2": 76,
+        "y2": 276
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:34:21.094532",
+    "wagon_id": 3323,
+    "count_index": 92,
+    "blur_score": 194.95046552545207,
+    "frame_index": 8219,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8219
+  },
+  {
+    "timestamp": "2026-01-09T00:34:23.171784",
+    "wagon_id": 3369,
+    "count_index": 93,
+    "blur_score": 238.3402752688128,
+    "frame_index": 8281,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8281
+  },
+  {
+    "timestamp": "2026-01-09T00:34:25.380896",
+    "wagon_id": 3406,
+    "count_index": 94,
+    "blur_score": 151.03309007649474,
+    "frame_index": 8347,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8347
+  },
+  {
+    "timestamp": "2026-01-09T00:34:25.624724",
+    "wagon_id": 3419,
+    "count_index": 95,
+    "blur_score": 1698.4959065822475,
+    "frame_index": 8354,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:34:28.016906",
+    "wagon_id": 3449,
+    "count_index": 96,
+    "blur_score": 144.44032370198062,
+    "frame_index": 8424,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8424
+  },
+  {
+    "timestamp": "2026-01-09T00:34:31.113812",
+    "wagon_id": 3501,
+    "count_index": 97,
+    "blur_score": 171.84419268303958,
+    "frame_index": 8515,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8515
+  },
+  {
+    "timestamp": "2026-01-09T00:34:32.278393",
+    "wagon_id": 3543,
+    "count_index": 98,
+    "blur_score": 1995.9581111053717,
+    "frame_index": 8551,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:34:33.218495",
+    "wagon_id": 3575,
+    "count_index": 99,
+    "blur_score": 185.59165330408746,
+    "frame_index": 8576,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8576
+  },
+  {
+    "timestamp": "2026-01-09T00:34:35.279984",
+    "wagon_id": 3583,
+    "count_index": 100,
+    "blur_score": 201.2970510823311,
+    "frame_index": 8636,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8636
+  },
+  {
+    "timestamp": "2026-01-09T00:34:37.311120",
+    "wagon_id": 3611,
+    "count_index": 101,
+    "blur_score": 230.10981613363683,
+    "frame_index": 8696,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8696
+  },
+  {
+    "timestamp": "2026-01-09T00:34:38.583235",
+    "wagon_id": 3627,
+    "count_index": 102,
+    "blur_score": 2890.621271500156,
+    "frame_index": 8736,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 677,
+        "y1": 249,
+        "x2": 853,
+        "y2": 432
+      },
+      {
+        "x1": 0,
+        "y1": 117,
+        "x2": 696,
+        "y2": 444
+      },
+      {
+        "x1": 847,
+        "y1": 276,
+        "x2": 903,
+        "y2": 399
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:34:42.882722",
+    "wagon_id": 3671,
+    "count_index": 103,
+    "blur_score": 183.00985107188941,
+    "frame_index": 8863,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8863
+  },
+  {
+    "timestamp": "2026-01-09T00:34:45.293070",
+    "wagon_id": 3705,
+    "count_index": 104,
+    "blur_score": 251.72963705860778,
+    "frame_index": 8934,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 8934
+  },
+  {
+    "timestamp": "2026-01-09T00:34:47.760570",
+    "wagon_id": 3744,
+    "count_index": 105,
+    "blur_score": 418.57875311262,
+    "frame_index": 9011,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:36.822748",
+    "wagon_id": 3766,
+    "count_index": 106,
+    "blur_score": 592.5270331100136,
+    "frame_index": 12413,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 616,
+        "y2": 501
+      },
+      {
+        "x1": 594,
+        "y1": 145,
+        "x2": 714,
+        "y2": 406
+      },
+      {
+        "x1": 703,
+        "y1": 214,
+        "x2": 770,
+        "y2": 354
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:38.812468",
+    "wagon_id": 3785,
+    "count_index": 107,
+    "blur_score": 488.0172651045176,
+    "frame_index": 12474,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 548,
+        "y2": 562
+      },
+      {
+        "x1": 524,
+        "y1": 134,
+        "x2": 753,
+        "y2": 415
+      },
+      {
+        "x1": 743,
+        "y1": 221,
+        "x2": 791,
+        "y2": 326
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:42.810767",
+    "wagon_id": 3816,
+    "count_index": 108,
+    "blur_score": 401.5854678029944,
+    "frame_index": 12594,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 545,
+        "y2": 620
+      },
+      {
+        "x1": 519,
+        "y1": 136,
+        "x2": 751,
+        "y2": 575
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:44.988481",
+    "wagon_id": 3838,
+    "count_index": 109,
+    "blur_score": 474.5685085610222,
+    "frame_index": 12662,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 2,
+        "x2": 637,
+        "y2": 621
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:46.995743",
+    "wagon_id": 3854,
+    "count_index": 110,
+    "blur_score": 398.48985115541643,
+    "frame_index": 12723,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 571,
+        "y2": 652
+      },
+      {
+        "x1": 551,
+        "y1": 168,
+        "x2": 744,
+        "y2": 605
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:50.753053",
+    "wagon_id": 3900,
+    "count_index": 111,
+    "blur_score": 512.4504386237538,
+    "frame_index": 12837,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 9,
+        "x2": 738,
+        "y2": 611
+      },
+      {
+        "x1": 734,
+        "y1": 261,
+        "x2": 794,
+        "y2": 411
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:53.419599",
+    "wagon_id": 3930,
+    "count_index": 112,
+    "blur_score": 487.80483370362657,
+    "frame_index": 12912,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 629,
+        "y2": 545
+      },
+      {
+        "x1": 749,
+        "y1": 225,
+        "x2": 809,
+        "y2": 380
+      },
+      {
+        "x1": 604,
+        "y1": 166,
+        "x2": 759,
+        "y2": 435
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:56.209454",
+    "wagon_id": 3957,
+    "count_index": 113,
+    "blur_score": 400.92849862542494,
+    "frame_index": 12990,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 209,
+        "y2": 629
+      },
+      {
+        "x1": 162,
+        "y1": 34,
+        "x2": 764,
+        "y2": 629
+      },
+      {
+        "x1": 740,
+        "y1": 264,
+        "x2": 811,
+        "y2": 422
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:36:59.696014",
+    "wagon_id": 3969,
+    "count_index": 114,
+    "blur_score": 394.7652826849619,
+    "frame_index": 13100,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 306,
+        "y2": 599
+      },
+      {
+        "x1": 280,
+        "y1": 41,
+        "x2": 764,
+        "y2": 581
+      },
+      {
+        "x1": 748,
+        "y1": 242,
+        "x2": 804,
+        "y2": 374
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:00.710074",
+    "wagon_id": 3980,
+    "count_index": 115,
+    "blur_score": 460.0846347125765,
+    "frame_index": 13131,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 497,
+        "y1": 229,
+        "x2": 761,
+        "y2": 625
+      },
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 526,
+        "y2": 661
+      },
+      {
+        "x1": 756,
+        "y1": 345,
+        "x2": 801,
+        "y2": 446
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:03.980690",
+    "wagon_id": 4002,
+    "count_index": 116,
+    "blur_score": 435.86408876942346,
+    "frame_index": 13232,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 710,
+        "y2": 711
+      },
+      {
+        "x1": 682,
+        "y1": 309,
+        "x2": 780,
+        "y2": 513
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:06.959537",
+    "wagon_id": 4032,
+    "count_index": 117,
+    "blur_score": 554.1263379881117,
+    "frame_index": 13323,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 578,
+        "y2": 602
+      },
+      {
+        "x1": 581,
+        "y1": 216,
+        "x2": 770,
+        "y2": 499
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:07.263901",
+    "wagon_id": 4035,
+    "count_index": 118,
+    "blur_score": 440.28615577279504,
+    "frame_index": 13332,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 386,
+        "y1": 70,
+        "x2": 753,
+        "y2": 413
+      },
+      {
+        "x1": 743,
+        "y1": 173,
+        "x2": 790,
+        "y2": 281
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:10.061122",
+    "wagon_id": 4065,
+    "count_index": 119,
+    "blur_score": 402.2483869746705,
+    "frame_index": 13420,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 629,
+        "y2": 586
+      },
+      {
+        "x1": 726,
+        "y1": 219,
+        "x2": 795,
+        "y2": 361
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:12.034197",
+    "wagon_id": 4086,
+    "count_index": 120,
+    "blur_score": 431.72085181547277,
+    "frame_index": 13480,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 570,
+        "y2": 685
+      },
+      {
+        "x1": 555,
+        "y1": 212,
+        "x2": 772,
+        "y2": 611
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:14.843942",
+    "wagon_id": 4103,
+    "count_index": 121,
+    "blur_score": 408.40325729460403,
+    "frame_index": 13566,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 539,
+        "y2": 649
+      },
+      {
+        "x1": 514,
+        "y1": 180,
+        "x2": 769,
+        "y2": 536
+      },
+      {
+        "x1": 760,
+        "y1": 283,
+        "x2": 811,
+        "y2": 416
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:17.580650",
+    "wagon_id": 4123,
+    "count_index": 122,
+    "blur_score": 406.2101118291324,
+    "frame_index": 13650,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 241,
+        "y2": 678
+      },
+      {
+        "x1": 204,
+        "y1": 70,
+        "x2": 759,
+        "y2": 678
+      },
+      {
+        "x1": 743,
+        "y1": 322,
+        "x2": 790,
+        "y2": 450
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:19.924676",
+    "wagon_id": 4138,
+    "count_index": 123,
+    "blur_score": 432.28712743639977,
+    "frame_index": 13723,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 311,
+        "y2": 569
+      },
+      {
+        "x1": 757,
+        "y1": 299,
+        "x2": 808,
+        "y2": 423
+      },
+      {
+        "x1": 404,
+        "y1": 182,
+        "x2": 762,
+        "y2": 564
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:20.033211",
+    "wagon_id": 4140,
+    "count_index": 124,
+    "blur_score": 417.74706782570144,
+    "frame_index": 13726,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 337,
+        "y1": 89,
+        "x2": 757,
+        "y2": 472
+      },
+      {
+        "x1": 751,
+        "y1": 203,
+        "x2": 805,
+        "y2": 333
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:22.633780",
+    "wagon_id": 4154,
+    "count_index": 125,
+    "blur_score": 393.49963350532465,
+    "frame_index": 13808,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 136,
+        "y1": 72,
+        "x2": 758,
+        "y2": 651
+      },
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 188,
+        "y2": 658
+      },
+      {
+        "x1": 736,
+        "y1": 300,
+        "x2": 795,
+        "y2": 442
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:28.109569",
+    "wagon_id": 4170,
+    "count_index": 126,
+    "blur_score": 406.06336067554946,
+    "frame_index": 13968,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 79,
+        "y1": 11,
+        "x2": 760,
+        "y2": 635
+      },
+      {
+        "x1": 744,
+        "y1": 266,
+        "x2": 813,
+        "y2": 431
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:32.006829",
+    "wagon_id": 4186,
+    "count_index": 127,
+    "blur_score": 376.11643317673594,
+    "frame_index": 14075,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 442,
+        "y2": 694
+      },
+      {
+        "x1": 402,
+        "y1": 138,
+        "x2": 771,
+        "y2": 692
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:34.121110",
+    "wagon_id": 4202,
+    "count_index": 128,
+    "blur_score": 462.58800781016043,
+    "frame_index": 14140,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 5,
+        "y1": 32,
+        "x2": 904,
+        "y2": 689
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:34.685732",
+    "wagon_id": 4211,
+    "count_index": 129,
+    "blur_score": 116.50322532918561,
+    "frame_index": 14148,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 14148
+  },
+  {
+    "timestamp": "2026-01-09T00:37:34.883659",
+    "wagon_id": 4212,
+    "count_index": 130,
+    "blur_score": 171.83135906377194,
+    "frame_index": 14149,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 14149
+  },
+  {
+    "timestamp": "2026-01-09T00:37:45.275125",
+    "wagon_id": 4240,
+    "count_index": 131,
+    "blur_score": 1417.1319591903687,
+    "frame_index": 14468,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:45.496408",
+    "wagon_id": 4247,
+    "count_index": 132,
+    "blur_score": 1133.8944952081793,
+    "frame_index": 14474,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:45.573498",
+    "wagon_id": 4250,
+    "count_index": 133,
+    "blur_score": 987.4269653595524,
+    "frame_index": 14476,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:48.863257",
+    "wagon_id": 4358,
+    "count_index": 134,
+    "blur_score": 1433.630194193196,
+    "frame_index": 14578,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:49.051316",
+    "wagon_id": 4365,
+    "count_index": 135,
+    "blur_score": 1319.0958353309416,
+    "frame_index": 14583,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:52.034608",
+    "wagon_id": 4432,
+    "count_index": 136,
+    "blur_score": 1137.483227118283,
+    "frame_index": 14650,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:52.673918",
+    "wagon_id": 4452,
+    "count_index": 137,
+    "blur_score": 1503.2885296637025,
+    "frame_index": 14669,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:57.681574",
+    "wagon_id": 4578,
+    "count_index": 138,
+    "blur_score": 1551.3197013297297,
+    "frame_index": 14795,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:37:59.900067",
+    "wagon_id": 4648,
+    "count_index": 139,
+    "blur_score": 1481.0850141458322,
+    "frame_index": 14865,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:01.104313",
+    "wagon_id": 4683,
+    "count_index": 140,
+    "blur_score": 1360.0028520939627,
+    "frame_index": 14900,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:03.455604",
+    "wagon_id": 4752,
+    "count_index": 141,
+    "blur_score": 1316.5194927641035,
+    "frame_index": 14969,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:03.601845",
+    "wagon_id": 4755,
+    "count_index": 142,
+    "blur_score": 1060.162891706458,
+    "frame_index": 14972,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 464,
+        "y1": 324,
+        "x2": 567,
+        "y2": 448
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:04.620370",
+    "wagon_id": 4784,
+    "count_index": 143,
+    "blur_score": 993.7025403622667,
+    "frame_index": 15001,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:06.230208",
+    "wagon_id": 4822,
+    "count_index": 144,
+    "blur_score": 869.1965526325835,
+    "frame_index": 15039,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:07.186059",
+    "wagon_id": 4844,
+    "count_index": 145,
+    "blur_score": 647.7972807040202,
+    "frame_index": 15059,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 461,
+        "y1": 171,
+        "x2": 1272,
+        "y2": 665
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:11.397921",
+    "wagon_id": 4910,
+    "count_index": 146,
+    "blur_score": 567.6264638750525,
+    "frame_index": 15163,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 460,
+        "y1": 70,
+        "x2": 1258,
+        "y2": 686
+      },
+      {
+        "x1": 395,
+        "y1": 300,
+        "x2": 490,
+        "y2": 470
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:14.275815",
+    "wagon_id": 4951,
+    "count_index": 147,
+    "blur_score": 599.7312159498543,
+    "frame_index": 15254,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 432,
+        "y1": 173,
+        "x2": 810,
+        "y2": 532
+      },
+      {
+        "x1": 376,
+        "y1": 260,
+        "x2": 448,
+        "y2": 391
+      },
+      {
+        "x1": 738,
+        "y1": 134,
+        "x2": 1266,
+        "y2": 604
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:14.725067",
+    "wagon_id": 4965,
+    "count_index": 148,
+    "blur_score": 29.605322915864512,
+    "frame_index": 15268,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:16.276628",
+    "wagon_id": 4990,
+    "count_index": 149,
+    "blur_score": 578.5669069801992,
+    "frame_index": 15315,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 642,
+        "y1": 111,
+        "x2": 1277,
+        "y2": 707
+      },
+      {
+        "x1": 432,
+        "y1": 250,
+        "x2": 657,
+        "y2": 577
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:21.455111",
+    "wagon_id": 5073,
+    "count_index": 150,
+    "blur_score": 604.754435115001,
+    "frame_index": 15450,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 693,
+        "y1": 165,
+        "x2": 1271,
+        "y2": 694
+      },
+      {
+        "x1": 493,
+        "y1": 207,
+        "x2": 684,
+        "y2": 585
+      },
+      {
+        "x1": 435,
+        "y1": 301,
+        "x2": 509,
+        "y2": 457
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:23.355053",
+    "wagon_id": 5094,
+    "count_index": 151,
+    "blur_score": 4.596710093816122,
+    "frame_index": 15491,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:24.375027",
+    "wagon_id": 5110,
+    "count_index": 152,
+    "blur_score": 601.8259385538729,
+    "frame_index": 15516,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 770,
+        "y1": 188,
+        "x2": 1273,
+        "y2": 671
+      },
+      {
+        "x1": 444,
+        "y1": 242,
+        "x2": 759,
+        "y2": 545
+      },
+      {
+        "x1": 378,
+        "y1": 294,
+        "x2": 457,
+        "y2": 406
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:26.490548",
+    "wagon_id": 5142,
+    "count_index": 153,
+    "blur_score": 627.7649698052044,
+    "frame_index": 15582,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 439,
+        "y1": 257,
+        "x2": 515,
+        "y2": 424
+      },
+      {
+        "x1": 905,
+        "y1": 173,
+        "x2": 1278,
+        "y2": 598
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:26.714374",
+    "wagon_id": 5148,
+    "count_index": 154,
+    "blur_score": 543.2062383364843,
+    "frame_index": 15588,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 525,
+        "y1": 114,
+        "x2": 863,
+        "y2": 462
+      },
+      {
+        "x1": 449,
+        "y1": 155,
+        "x2": 550,
+        "y2": 337
+      },
+      {
+        "x1": 381,
+        "y1": 170,
+        "x2": 466,
+        "y2": 286
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:28.829171",
+    "wagon_id": 5194,
+    "count_index": 155,
+    "blur_score": 565.8183604593291,
+    "frame_index": 15653,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 461,
+        "y1": 184,
+        "x2": 957,
+        "y2": 640
+      },
+      {
+        "x1": 965,
+        "y1": 150,
+        "x2": 1274,
+        "y2": 669
+      },
+      {
+        "x1": 394,
+        "y1": 300,
+        "x2": 479,
+        "y2": 439
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:29.730062",
+    "wagon_id": 5216,
+    "count_index": 156,
+    "blur_score": 4.94333199338911,
+    "frame_index": 15679,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 274,
+        "y1": 21,
+        "x2": 534,
+        "y2": 256
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:29.978353",
+    "wagon_id": 5222,
+    "count_index": 157,
+    "blur_score": 9.93780459773563,
+    "frame_index": 15686,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 81,
+        "y1": 0,
+        "x2": 327,
+        "y2": 134
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:31.917046",
+    "wagon_id": 5247,
+    "count_index": 158,
+    "blur_score": 596.5156308263875,
+    "frame_index": 15744,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 819,
+        "y1": 121,
+        "x2": 1275,
+        "y2": 675
+      },
+      {
+        "x1": 428,
+        "y1": 231,
+        "x2": 664,
+        "y2": 550
+      },
+      {
+        "x1": 385,
+        "y1": 315,
+        "x2": 446,
+        "y2": 409
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:32.429570",
+    "wagon_id": 5263,
+    "count_index": 159,
+    "blur_score": 13.527912684779748,
+    "frame_index": 15759,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 507,
+        "y2": 398
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:35.227136",
+    "wagon_id": 5324,
+    "count_index": 160,
+    "blur_score": 546.6245479786153,
+    "frame_index": 15838,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 631,
+        "y1": 37,
+        "x2": 1275,
+        "y2": 701
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:36.228316",
+    "wagon_id": 5340,
+    "count_index": 161,
+    "blur_score": 9.796789538187076,
+    "frame_index": 15867,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 50,
+        "y1": 0,
+        "x2": 325,
+        "y2": 151
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:37.614409",
+    "wagon_id": 5366,
+    "count_index": 162,
+    "blur_score": 591.2211257045985,
+    "frame_index": 15907,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 830,
+        "y1": 58,
+        "x2": 1277,
+        "y2": 688
+      },
+      {
+        "x1": 442,
+        "y1": 189,
+        "x2": 665,
+        "y2": 549
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:40.498811",
+    "wagon_id": 5407,
+    "count_index": 163,
+    "blur_score": 529.1099313783252,
+    "frame_index": 15982,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 407,
+        "y1": 217,
+        "x2": 504,
+        "y2": 353
+      },
+      {
+        "x1": 479,
+        "y1": 62,
+        "x2": 1209,
+        "y2": 594
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:41.923048",
+    "wagon_id": 5433,
+    "count_index": 164,
+    "blur_score": 656.6291752418183,
+    "frame_index": 16014,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 412,
+        "y1": 296,
+        "x2": 508,
+        "y2": 438
+      },
+      {
+        "x1": 484,
+        "y1": 197,
+        "x2": 1071,
+        "y2": 634
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:44.931579",
+    "wagon_id": 5486,
+    "count_index": 165,
+    "blur_score": 607.0954825671402,
+    "frame_index": 16074,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 445,
+        "y1": 203,
+        "x2": 766,
+        "y2": 548
+      },
+      {
+        "x1": 403,
+        "y1": 298,
+        "x2": 467,
+        "y2": 411
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:47.164501",
+    "wagon_id": 5541,
+    "count_index": 166,
+    "blur_score": 532.5890141173226,
+    "frame_index": 16142,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 462,
+        "y1": 135,
+        "x2": 933,
+        "y2": 540
+      },
+      {
+        "x1": 902,
+        "y1": 141,
+        "x2": 1274,
+        "y2": 593
+      },
+      {
+        "x1": 397,
+        "y1": 238,
+        "x2": 480,
+        "y2": 382
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:50.183712",
+    "wagon_id": 5600,
+    "count_index": 167,
+    "blur_score": 7.730338259871342,
+    "frame_index": 16231,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:50.304922",
+    "wagon_id": 5601,
+    "count_index": 168,
+    "blur_score": 541.355888872535,
+    "frame_index": 16234,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 848,
+        "y1": 56,
+        "x2": 1274,
+        "y2": 697
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:52.829128",
+    "wagon_id": 5658,
+    "count_index": 169,
+    "blur_score": 531.957720543404,
+    "frame_index": 16297,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 445,
+        "y1": 184,
+        "x2": 680,
+        "y2": 550
+      },
+      {
+        "x1": 674,
+        "y1": 152,
+        "x2": 1275,
+        "y2": 705
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:55.798138",
+    "wagon_id": 5699,
+    "count_index": 170,
+    "blur_score": 490.96364392338967,
+    "frame_index": 16364,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 792,
+        "y1": 135,
+        "x2": 1275,
+        "y2": 698
+      },
+      {
+        "x1": 450,
+        "y1": 147,
+        "x2": 806,
+        "y2": 631
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:56.699582",
+    "wagon_id": 5725,
+    "count_index": 171,
+    "blur_score": 590.6538304448186,
+    "frame_index": 16392,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 694,
+        "y1": 173,
+        "x2": 1273,
+        "y2": 595
+      },
+      {
+        "x1": 436,
+        "y1": 215,
+        "x2": 709,
+        "y2": 535
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:38:59.188460",
+    "wagon_id": 5778,
+    "count_index": 172,
+    "blur_score": 539.3831070794,
+    "frame_index": 16468,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 566,
+        "y1": 204,
+        "x2": 940,
+        "y2": 627
+      },
+      {
+        "x1": 934,
+        "y1": 20,
+        "x2": 1277,
+        "y2": 691
+      },
+      {
+        "x1": 768,
+        "y1": 202,
+        "x2": 944,
+        "y2": 630
+      },
+      {
+        "x1": 426,
+        "y1": 293,
+        "x2": 481,
+        "y2": 434
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:39:00.539560",
+    "wagon_id": 5818,
+    "count_index": 173,
+    "blur_score": 481.062757659406,
+    "frame_index": 16509,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 570,
+        "y1": 15,
+        "x2": 1134,
+        "y2": 522
+      },
+      {
+        "x1": 383,
+        "y1": 97,
+        "x2": 593,
+        "y2": 431
+      },
+      {
+        "x1": 280,
+        "y1": 148,
+        "x2": 397,
+        "y2": 316
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:39:00.647808",
+    "wagon_id": 5822,
+    "count_index": 174,
+    "blur_score": 9.006801521111065,
+    "frame_index": 16512,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 64,
+        "y1": 0,
+        "x2": 297,
+        "y2": 91
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:39:02.123759",
+    "wagon_id": 5853,
+    "count_index": 175,
+    "blur_score": 565.0208779231075,
+    "frame_index": 16555,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 702,
+        "y1": 170,
+        "x2": 1276,
+        "y2": 683
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:39:02.833077",
+    "wagon_id": 5867,
+    "count_index": 176,
+    "blur_score": 746.7632875247879,
+    "frame_index": 16574,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:40:15.392124",
+    "wagon_id": 6002,
+    "count_index": 177,
+    "blur_score": 361.1856089234169,
+    "frame_index": 18537,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 620,
+        "y2": 551
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:40:19.694017",
+    "wagon_id": 6022,
+    "count_index": 178,
+    "blur_score": 323.60328866833186,
+    "frame_index": 18635,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 455,
+        "y2": 524
+      },
+      {
+        "x1": 432,
+        "y1": 40,
+        "x2": 707,
+        "y2": 496
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:40:23.556092",
+    "wagon_id": 6043,
+    "count_index": 179,
+    "blur_score": 300.93732340264665,
+    "frame_index": 18748,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 3,
+        "x2": 381,
+        "y2": 569
+      },
+      {
+        "x1": 348,
+        "y1": 24,
+        "x2": 703,
+        "y2": 543
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:40:28.893183",
+    "wagon_id": 6047,
+    "count_index": 180,
+    "blur_score": 295.25136327454413,
+    "frame_index": 18870,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 537,
+        "y1": 34,
+        "x2": 806,
+        "y2": 456
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 18870
+  },
+  {
+    "timestamp": "2026-01-09T00:40:35.055968",
+    "wagon_id": 6055,
+    "count_index": 181,
+    "blur_score": 276.9423114797023,
+    "frame_index": 19054,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 469,
+        "y1": 8,
+        "x2": 797,
+        "y2": 493
+      },
+      {
+        "x1": 7,
+        "y1": 180,
+        "x2": 489,
+        "y2": 467
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 19054
+  },
+  {
+    "timestamp": "2026-01-09T00:40:38.038509",
+    "wagon_id": 6058,
+    "count_index": 182,
+    "blur_score": 250.04904868156873,
+    "frame_index": 19138,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 1,
+        "y1": 112,
+        "x2": 754,
+        "y2": 443
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 19138
+  },
+  {
+    "timestamp": "2026-01-09T00:40:41.325792",
+    "wagon_id": 6062,
+    "count_index": 183,
+    "blur_score": 272.75894509522846,
+    "frame_index": 19228,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 19228
+  },
+  {
+    "timestamp": "2026-01-09T00:40:49.078415",
+    "wagon_id": 6076,
+    "count_index": 184,
+    "blur_score": 262.78225597538,
+    "frame_index": 19453,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 6,
+        "x2": 478,
+        "y2": 570
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 19453
+  },
+  {
+    "timestamp": "2026-01-09T00:41:00.671336",
+    "wagon_id": 6101,
+    "count_index": 185,
+    "blur_score": 268.00438165162956,
+    "frame_index": 19767,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 0,
+        "y1": 0,
+        "x2": 427,
+        "y2": 596
+      },
+      {
+        "x1": 588,
+        "y1": 68,
+        "x2": 841,
+        "y2": 478
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 19767
+  },
+  {
+    "timestamp": "2026-01-09T00:41:02.938149",
+    "wagon_id": 6109,
+    "count_index": 186,
+    "blur_score": 268.7198166728851,
+    "frame_index": 19833,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 4,
+        "y1": 135,
+        "x2": 692,
+        "y2": 446
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 19833
+  },
+  {
+    "timestamp": "2026-01-09T00:41:06.953563",
+    "wagon_id": 6127,
+    "count_index": 187,
+    "blur_score": 281.27740192276343,
+    "frame_index": 19951,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 542,
+        "y1": 67,
+        "x2": 778,
+        "y2": 481
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 19951
+  },
+  {
+    "timestamp": "2026-01-09T00:41:12.251470",
+    "wagon_id": 6148,
+    "count_index": 188,
+    "blur_score": 275.0919615950853,
+    "frame_index": 20107,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage",
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 1,
+        "y1": 0,
+        "x2": 539,
+        "y2": 619
+      },
+      {
+        "x1": 520,
+        "y1": 57,
+        "x2": 791,
+        "y2": 555
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 20107
+  },
+  {
+    "timestamp": "2026-01-09T00:41:13.329353",
+    "wagon_id": 6157,
+    "count_index": 189,
+    "blur_score": 43.14169770189996,
+    "frame_index": 20141,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:41:13.824113",
+    "wagon_id": 6166,
+    "count_index": 190,
+    "blur_score": 174.1387071165717,
+    "frame_index": 20152,
+    "damage_detected": true,
+    "damage_classes": [
+      "door_damage"
+    ],
+    "damage_bboxes": [
+      {
+        "x1": 10,
+        "y1": 0,
+        "x2": 656,
+        "y2": 458
+      }
+    ],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 20152
+  },
+  {
+    "timestamp": "2026-01-09T00:41:14.441928",
+    "wagon_id": 6186,
+    "count_index": 191,
+    "blur_score": 90.64261767450317,
+    "frame_index": 20169,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  },
+  {
+    "timestamp": "2026-01-09T00:41:23.606068",
+    "wagon_id": 6193,
+    "count_index": 192,
+    "blur_score": 283.90488995481013,
+    "frame_index": 20442,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 20442
+  },
+  {
+    "timestamp": "2026-01-09T00:41:24.665004",
+    "wagon_id": 6203,
+    "count_index": 193,
+    "blur_score": 299.2971775717839,
+    "frame_index": 20471,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": true,
+    "deblur_source_frame": 20471
+  },
+  {
+    "timestamp": "2026-01-09T00:41:26.281030",
+    "wagon_id": 6244,
+    "count_index": 194,
+    "blur_score": 1329.1118105091334,
+    "frame_index": 20520,
+    "damage_detected": false,
+    "damage_classes": [],
+    "damage_bboxes": [],
+    "ocr_text": "",
+    "ocr_confidence": 0.0,
+    "deblur_applied": false,
+    "deblur_source_frame": null
+  }
+]

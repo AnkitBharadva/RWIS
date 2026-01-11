@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\utils\data_models.py
+# hypothesis_version: 6.148.7
+
+[100.0, 'bamboo_door', 'breakage', 'close_door', 'damage_door', 'dent', 'no_deblur', 'open_door', 'roi_deblur', 'skip_deblur']

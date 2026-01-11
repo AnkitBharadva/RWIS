@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\pipelines\blur_detector.py
+# hypothesis_version: 6.150.0
+
+['moderate_blur', 'severe_blur', 'sharp']

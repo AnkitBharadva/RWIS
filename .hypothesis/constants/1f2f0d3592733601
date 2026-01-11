@@ -1,0 +1,4 @@
+# file: C:\Users\Mahir patel\ankit\au\ju\dashboard\app.py
+# hypothesis_version: 6.150.0
+
+[0.0, 0.05, 0.1, 0.5, 0.8, 1.0, 'ALERT', 'Confidence Threshold', 'Connected', 'DAMAGE DETECTED', 'Damage', 'Disconnected', 'Error', 'FPS', 'Frame Skip', 'Inference (ms)', 'Live Video Feed', 'Model Settings', 'NORMAL', 'OK', 'Objects', 'RGB', 'Status', 'Stream Control', 'Video Source', '__main__', 'color', 'confidence_threshold', 'connection_status', 'css_class', 'delta_color', 'detection_log', 'expanded', 'frame_skip', 'green', 'inverse', 'is_running', 'normal', 'red', 'status-alert', 'status-normal', 'text', 'video_source', 'wide', '⏹️ Stop', '▶️ Start', '⚙️ Controls', '🚂']
