@@ -58,6 +58,10 @@ model_best.pth
 *.mov
 *.mkv
 *.ts
+1.mp4
+5.mp4
+6.mp4
+1.ts
 
 # Output files
 outputs/debug_frames/
