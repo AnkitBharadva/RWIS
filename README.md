@@ -10,6 +10,7 @@ An end-to-end AI-powered video processing pipeline for railway wagon inspection,
 ## Features
 
 - **Real-time Wagon Detection** - YOLOv11n-based detection with ByteTrack multi-object tracking
+- **Bidirectional Wagon Counting** - Accurate counting of wagons crossing a virtual line (both directions)
 - **Damage Detection** - Automated detection of wagon damage (dents, breakage, door issues)
 - **OCR Text Extraction** - EasyOCR-powered wagon identification with visual feedback
 - **Smart Deblurring** - MPRNet ROI-only deblurring for improved OCR accuracy
@@ -17,6 +18,14 @@ An end-to-end AI-powered video processing pipeline for railway wagon inspection,
 - **Mission Control Dashboard** - Streamlit-based real-time monitoring interface
 - **Processing Status Indicators** - Visual feedback for Illumination, Deblur, and OCR status
 - **Automatic Frame Saving** - Save OCR frames with JSON metadata
+- **CPU Optimizations** - Multi-threaded processing for efficient CPU-only execution
+
+## Documentation
+
+- **[Training Details](TRAINING_DETAILS.md)** - Comprehensive model training information, metrics, and results
+- **[Technical Documentation](TECHNICAL_DOCUMENTATION.md)** - System architecture and implementation details
+- **[Performance Optimization](PERFORMANCE_OPTIMIZATION.md)** - CPU optimization guide for better performance
+- **[Quick CPU Optimization](QUICK_CPU_OPTIMIZATION.md)** - 3-minute quick fix for slow performance
 
 ## Quick Start
 
@@ -49,11 +58,13 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
 
 The system requires three custom-trained models for operation. All models must be downloaded and placed in their respective directories before running the pipeline.
 
-| Model | Purpose | Classes | Size | Download |
-|-------|---------|---------|------|----------|
-| **Wagon Detector** | Detects railway wagons in video frames | `wagon_body`, `wheel` | ~6 MB | [Kaggle](https://www.kaggle.com/models/ankitbharadva/wagon-detection) |
-| **Damage Detector** | Identifies damage types on wagon surfaces | `Bamboo Door`, `Breakage`, `Close Door`, `Damage Door`, `Dent`, `Open Door`, `Wagon` | ~6 MB | [Kaggle](https://www.kaggle.com/models/ankitbharadva/wagon-damage-detection) |
-| **MPRNet Deblur** | Removes motion blur from ROI regions | N/A (Image restoration) | ~20 MB | [Kaggle](https://www.kaggle.com/models/ankitbharadva/nprnet) |
+| Model | Purpose | Classes | Performance | Download |
+|-------|---------|---------|-------------|----------|
+| **Wagon Detector** | Detects railway wagons in video frames | `wagon_body`, `wheel` | **mAP@50:** 70.98%<br>**Precision:** 63.84%<br>**Recall:** 73.81% | [Model](https://www.kaggle.com/models/ankitbharadva/wagon-detection) \| [Dataset](https://www.kaggle.com/datasets/ankitbharadva/wagon-detection) |
+| **Damage Detector** | Identifies damage types on wagon surfaces | `Bamboo Door`, `Breakage`, `Close Door`, `Damage Door`, `Dent`, `Open Door`, `Wagon` | **mAP@50:** 71.78%<br>**Peak:** 87.24%<br>**Precision:** 71.79% | [Model](https://www.kaggle.com/models/ankitbharadva/wagon-damage-detection) \| [Dataset](https://universe.roboflow.com/ssip25/damage-detection-ff8en) |
+| **MPRNet Deblur** | Removes motion blur from ROI regions | N/A (Image restoration) | Pre-trained on GoPro dataset | [Model](https://www.kaggle.com/models/ankitbharadva/nprnet) |
+
+- **Full training metrics:** See [TRAINING_DETAILS.md](TRAINING_DETAILS.md)
 
 **Installation Instructions:**
 
