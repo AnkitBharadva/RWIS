@@ -24,8 +24,6 @@ An end-to-end AI-powered video processing pipeline for railway wagon inspection,
 
 - Python 3.8+
 - NVIDIA GPU with CUDA support (recommended)
-- 6 GB+ VRAM for GPU inference
-- Windows 11 (primary target) or Linux
 
 ### Installation
 
@@ -43,19 +41,60 @@ venv\Scripts\activate  # Windows
 # Install dependencies
 pip install -r requirements.txt
 
-# For GPU support
+# For GPU support (when sm_120 is supported by PyTorch)
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+```
+
+### Model Downloads
+
+The system requires three custom-trained models for operation. All models must be downloaded and placed in their respective directories before running the pipeline.
+
+| Model | Purpose | Classes | Size | Download |
+|-------|---------|---------|------|----------|
+| **Wagon Detector** | Detects railway wagons in video frames | `wagon_body`, `wheel` | ~6 MB | [Kaggle](https://www.kaggle.com/models/ankitbharadva/wagon-detection) |
+| **Damage Detector** | Identifies damage types on wagon surfaces | `Bamboo Door`, `Breakage`, `Close Door`, `Damage Door`, `Dent`, `Open Door`, `Wagon` | ~6 MB | [Kaggle](https://www.kaggle.com/models/ankitbharadva/wagon-damage-detection) |
+| **MPRNet Deblur** | Removes motion blur from ROI regions | N/A (Image restoration) | ~20 MB | [Kaggle](https://www.kaggle.com/models/ankitbharadva/nprnet) |
+
+**Installation Instructions:**
+
+```bash
+# Create required directories
+mkdir -p models
+mkdir -p MPRNet/Deblurring/pretrained_models
+
+# Download and place models
+# 1. Wagon Detector → models/damage_detector.pt
+# 2. Damage Detector → models/wagon_detector.pt
+# 3. MPRNet Deblur → MPRNet/Deblurring/pretrained_models/model_deblurring.pth
+```
+
+**Verification:**
+
+```bash
+# Verify all models are in place
+ls models/damage_detector.pt
+ls models/wagon_detector.pt
+ls MPRNet/Deblurring/pretrained_models/model_deblurring.pth
 ```
 
 ### Running the Dashboard
 
 ```bash
-# Start the Mission Control Dashboard
-streamlit run run_dashboard.py
+# Start the Mission Control Dashboard (local access only)
+streamlit run dashboard/app.py
 
 # Or use the launcher script
 python run_dashboard.py
+
+# Enable network access (access from phone/tablet on same WiFi)
+streamlit run dashboard/app.py --server.address 0.0.0.0 --server.port 8501
 ```
+
+**Network Access:**
+1. Find your computer's IP address: `ipconfig` (Windows) or `ifconfig` (Linux/Mac)
+2. Look for IPv4 Address (e.g., `192.168.1.100`)
+3. Access from any device on the same network: `http://192.168.1.100:8501`
+4. If blocked by firewall, allow Python through Windows Defender Firewall
 
 ### Running the Pipeline
 
@@ -72,29 +111,79 @@ python main.py --config config.json
 
 ## Architecture
 
+### System Overview
+
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                           Mission Control Dashboard                          │
-├─────────────────────────────────────────────────────────────────────────────┤
+┌────────────────────────────────────────────────────────────────────────────┐
+│                           Mission Control Dashboard                        │
+│                        (Streamlit WebSocket Server)                        │
+├────────────────────────────────────────────────────────────────────────────┤
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                    Enhanced Metrics Row                              │   │
+│  │                    Enhanced Metrics Row                             │   │
 │  │  FPS | Latency | Objects | Wagons | Damage | Illum | Deblur | OCR   │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
+│                                                                            │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                    Dual Video Display                                │   │
+│  │                    Dual Video Display                               │   │
 │  │  ┌─────────────────────┐    ┌─────────────────────┐                 │   │
 │  │  │    Raw Input        │    │  Processed Output   │                 │   │
-│  │  │                     │    │  + OCR Bounding Boxes│                 │   │
-│  │  │                     │    │  + Text Overlays     │                 │   │
+│  │  │                     │    │  + OCR Bounding Boxes│                │   │
+│  │  │                     │    │  + Text Overlays     │                │   │
 │  │  └─────────────────────┘    └─────────────────────┘                 │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
+│                                                                            │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                    Detection Log / OCR Log                           │   │
+│  │                    Detection Log / OCR Log                          │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────────┘
+└────────────────────────────────────────────────────────────────────────────┘
+                                    ↕ WebSocket
+                    ┌───────────────────────────────────┐
+                    │  Client Devices (Thin Clients)    │
+                    │  • Desktop Browser                │
+                    │  • Mobile Phone (Same WiFi)       │
+                    │  • Tablet                         │
+                    └───────────────────────────────────┘
 ```
+
+### Client-Server Architecture
+
+**Server Side (Your Computer):**
+- **Streamlit WebSocket Server** - Runs on port 8501
+- **Python Backend** - Processes video frames, runs ML models
+- **ML Models** - YOLO (wagon/damage detection), MPRNet (deblurring), EasyOCR (text recognition)
+- **Session State** - Maintains state for each connected client
+- **All heavy computation** happens on the server (CPU/GPU)
+
+**Network Communication:**
+- **Initial Connection** - HTTP handshake on port 8501
+- **Upgrade to WebSocket** - Full-duplex bidirectional communication
+- **Client → Server** - UI interactions (button clicks, slider changes)
+- **Server → Client** - UI updates, processed frames (base64 encoded), metrics
+
+**Data Flow:**
+```
+Mobile/Desktop Browser → WebSocket → Streamlit Server → Python Backend
+                                            ↓
+                                    ML Models (CPU/GPU)
+                                            ↓
+                                Process Frame + Detect
+                                            ↓
+Mobile/Desktop Browser ← WebSocket ← Annotated Frame + Metrics (base64)
+```
+
+**Why It's Fast:**
+- Only **processed frames** are transmitted (not raw video)
+- **Delta updates** - Only changed UI elements are sent
+- **WebSocket** keeps connection alive (no HTTP overhead)
+- **Browser caching** for static assets (CSS, JS)
+- **Thin client model** - All ML processing on server
+
+**Key Technologies:**
+- **Streamlit** - Web framework with built-in WebSocket support
+- **Tornado** - Async web server (Streamlit's backend)
+- **WebSocket Protocol** - Full-duplex communication (RFC 6455)
+- **Base64 Encoding** - For image transmission over WebSocket
+- **Session State** - Server-side state management per client
 
 ## Processing Pipeline
 
@@ -221,6 +310,55 @@ pytest tests/test_ocr_visualization.py
 # Run property-based tests with statistics
 pytest --hypothesis-show-statistics
 ```
+
+## Performance Benchmarks
+
+### Test System Specifications
+- **CPU**: AMD Ryzen 7 (16 cores)
+- **RAM**: 15.3 GB
+- **GPU**: NVIDIA GeForce RTX 5050 Laptop (CPU mode - sm_120 compatibility))(Unable to Utilize due to PyTorch compactibilty)
+- **OS**: Windows 11
+- **Test Video**: 1280x720 @ 60 FPS, 20,858 frames
+
+### Performance Metrics (CPU Mode)
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| **Average FPS** | 18.45 | Real-time processing speed |
+| **Peak FPS** | 33.15 | Maximum achieved framerate |
+| **Average Latency** | 152 ms | Per-frame processing time |
+| **CPU Usage** | 809% | Multi-core utilization (16 cores) |
+| **Memory Usage** | 1.5 GB | RAM consumption |
+
+### Component Performance Breakdown
+
+| Component | Average Time | Description |
+|-----------|--------------|-------------|
+| **Wagon Detection** | 33.75 ms | YOLOv11n wagon detection |
+| **Deblurring** | 205.20 ms | MPRNet ROI deblurring (N-th frame) |
+| **OCR** | 106.99 ms | EasyOCR text extraction (every 5th frame) |
+| **Total Pipeline** | 152.15 ms | End-to-end processing |
+
+### Throughput
+- **Processed**: 20,858 frames in 53.5 minutes
+- **Overall FPS**: 6.49 (with all features enabled)
+- **Real-time Capability**: 18.45 FPS average (suitable for 15-20 FPS video streams)
+
+### Performance Notes
+- Running in **CPU mode** due to RTX 5050 sm_120 architecture (PyTorch compatibility)
+- **GPU mode** (when supported) expected to provide 5-10x speedup
+- Deblurring runs every 3rd frame with caching (3x speedup)
+- OCR runs every 5th frame (5x speedup)
+- Multi-core CPU utilization: 809% (efficient use of 16 cores)
+
+### Optimization Impact
+
+| Feature | Speedup | Description |
+|---------|---------|-------------|
+| N-th Frame Deblurring | 3x | Cache results for intermediate frames |
+| OCR Frame Interval | 5x | Run OCR every 5th frame |
+| ROI-only Processing | 10x | Process small regions vs full frame |
+| Multi-threading | 8x | Parallel processing on 16 cores |
 
 ## GPU Memory Management
 

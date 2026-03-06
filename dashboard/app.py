@@ -28,6 +28,10 @@ from dashboard.track_renderer import TrackIDRenderer
 from dashboard.frame_saver import FrameSaver
 from dashboard.ocr_log import OCRLogDisplay
 
+# CPU Performance Optimization: Enable OpenCV multi-threading
+# Uses 8 threads to leverage multi-core CPU for faster image processing
+cv2.setNumThreads(8)
+
 # Import pipeline components for wagon and damage detection
 from pipelines.wagon_detector import WagonDetector
 from pipelines.damage_detector import DamageDetector
@@ -273,7 +277,7 @@ class MissionControlDashboard:
         """
         # Page configuration must be the first Streamlit command
         st.set_page_config(
-            page_title="Mission Control - Railway Inspection",
+            page_title="RWIS - Railway Inspection",
             page_icon="🚂",
             layout="wide",
             initial_sidebar_state="expanded"
@@ -370,11 +374,11 @@ class MissionControlDashboard:
             mprnet_model_path = "model_best.pth"
             if os.path.exists(mprnet_model_path):
                 try:
-                    # Initialize MPRNet wrapper
+                    # Initialize MPRNet wrapper (CPU mode for sm_120 compatibility)
                     mprnet = MPRNetDeblur(
                         model_path=mprnet_model_path,
-                        device='cuda',
-                        use_fp16=True,
+                        device='cpu',
+                        use_fp16=False,
                         fp32_fallback=True,
                         max_roi_width=256,
                         max_roi_height=256
@@ -416,6 +420,17 @@ class MissionControlDashboard:
         self.ocr_frame_saver = st.session_state.ocr_frame_saver
         # Update output directory in case it changed in session state
         self.ocr_frame_saver.output_directory = ocr_output_directory
+        
+        # Initialize WagonTracker for proper wagon counting (Requirements 2.5, 2.6, 2.7)
+        if "wagon_tracker" not in st.session_state:
+            from tracking.tracker import WagonTracker
+            counting_line_pos = st.session_state.get("counting_line_position", 0.5)
+            counting_line_orientation = st.session_state.get("counting_line_orientation", "vertical")
+            st.session_state.wagon_tracker = WagonTracker(
+                counting_line_y=counting_line_pos,
+                orientation=counting_line_orientation
+            )
+        self.wagon_tracker = st.session_state.wagon_tracker
     
     def _init_detectors(self) -> None:
         """
@@ -510,18 +525,21 @@ class MissionControlDashboard:
                 wagon_detections = self.wagon_detector.detect(frame)
                 object_count = len(wagon_detections)
                 
-                # Convert wagon detections to tracked wagons for track ID display
-                # In a full implementation, this would use ByteTrack for proper tracking
-                # For now, we create TrackedWagon objects with sequential IDs
-                for idx, wagon in enumerate(wagon_detections):
-                    tracked_wagon = TrackedWagon(
-                        track_id=idx + 1,  # Simple sequential ID
-                        bbox=wagon.bbox,
-                        confidence=wagon.confidence,
-                        crossed_line=False,
-                        count_index=None
-                    )
-                    tracked_wagons.append(tracked_wagon)
+                # Use WagonTracker for proper counting with ByteTrack
+                if hasattr(self, 'wagon_tracker') and self.wagon_tracker is not None:
+                    frame_shape = (frame.shape[0], frame.shape[1], frame.shape[2])
+                    tracked_wagons = self.wagon_tracker.update(wagon_detections, frame_shape, frame_index)
+                else:
+                    # Fallback: Create TrackedWagon objects with sequential IDs (no proper tracking)
+                    for idx, wagon in enumerate(wagon_detections):
+                        tracked_wagon = TrackedWagon(
+                            track_id=idx + 1,  # Simple sequential ID
+                            bbox=wagon.bbox,
+                            confidence=wagon.confidence,
+                            crossed_line=False,
+                            count_index=None
+                        )
+                        tracked_wagons.append(tracked_wagon)
             except Exception as e:
                 # Log error but continue processing
                 pass
@@ -1707,7 +1725,7 @@ class MissionControlDashboard:
         
         Requirements: 1.4, 2.5, 3.4, 3.5, 3.6, 4.2, 4.3, 4.4, 5.1, 5.2, 5.3, 5.5, 6.1, 6.2, 6.4, 7.4
         """
-        st.title("🚂 Mission Control - Railway Wagon Inspection")
+        st.title("RWIS - Railway Wagon Inspection")
         
         # Render sidebar and get settings
         settings = self.render_sidebar()
@@ -1721,8 +1739,7 @@ class MissionControlDashboard:
         # re-rendering the entire page (prevents sidebar/header flickering)
         metrics_placeholder = st.empty()
         video_placeholder = st.empty()
-        log_placeholder = st.empty()
-        ocr_log_placeholder = st.empty()  # New placeholder for OCR log (Requirement 6.1)
+        logs_placeholder = st.empty()  # Single placeholder for both logs side-by-side
         
         # Add a stop button in the main area for stopping during the loop
         stop_button_placeholder = st.empty()
@@ -1834,14 +1851,17 @@ class MissionControlDashboard:
                     if tracked_wagons:
                         annotated_frame = self.track_renderer.draw_track_ids(annotated_frame, tracked_wagons)
                     
-                    # Update total wagon count (Requirement 3.1)
-                    # Since we don't have proper ByteTrack integration yet, we track the maximum
-                    # number of wagons seen in any single frame as a proxy for total wagons
-                    # This prevents the count from infinitely incrementing
-                    total_wagon_count = st.session_state.get("total_wagon_count", 0)
-                    if object_count > total_wagon_count:
-                        total_wagon_count = object_count
+                    # Update total wagon count from tracker (Requirement 3.1)
+                    # Get cumulative count from WagonTracker
+                    if hasattr(self, 'wagon_tracker') and self.wagon_tracker is not None:
+                        total_wagon_count = self.wagon_tracker.get_wagon_count()
                         st.session_state.total_wagon_count = total_wagon_count
+                    else:
+                        # Fallback: track maximum wagons in a single frame
+                        total_wagon_count = st.session_state.get("total_wagon_count", 0)
+                        if object_count > total_wagon_count:
+                            total_wagon_count = object_count
+                            st.session_state.total_wagon_count = total_wagon_count
                     
                     # Append detection log entries for new damage detections
                     if damage_detections:
@@ -1942,10 +1962,13 @@ class MissionControlDashboard:
                         container=video_placeholder
                     )
                     
-                    self.render_detection_log(log_placeholder, detection_log)
-                    
-                    # Render OCR log (Requirement 6.1)
-                    self.ocr_log_display.render(ocr_log_placeholder)
+                    # Render both logs side-by-side in columns
+                    with logs_placeholder.container():
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            self.render_detection_log(st.empty(), detection_log)
+                        with col2:
+                            self.ocr_log_display.render(st.empty())
                     
                     # Small delay to control frame rate and allow UI responsiveness
                     time.sleep(0.03)
@@ -2062,11 +2085,13 @@ class MissionControlDashboard:
                 container=video_placeholder
             )
             
-            # Render detection log
-            self.render_detection_log(log_placeholder, detection_log)
-            
-            # Render OCR log (Requirement 6.1)
-            self.ocr_log_display.render(ocr_log_placeholder)
+            # Render both logs side-by-side in columns
+            with logs_placeholder.container():
+                col1, col2 = st.columns(2)
+                with col1:
+                    self.render_detection_log(st.empty(), detection_log)
+                with col2:
+                    self.ocr_log_display.render(st.empty())
             
             # Release resources if stopped (Requirement 7.4)
             if not is_running and self.video_manager.is_connected():

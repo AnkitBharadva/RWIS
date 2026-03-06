@@ -80,17 +80,13 @@ class OCRPipeline:
         try:
             import easyocr
             
-            # Determine GPU availability
-            use_gpu = self.gpu_enabled
-            if use_gpu:
-                try:
-                    import torch
-                    if not torch.cuda.is_available():
-                        logger.warning("GPU requested but CUDA not available, falling back to CPU")
-                        use_gpu = False
-                except ImportError:
-                    logger.warning("PyTorch not available, falling back to CPU for EasyOCR")
-                    use_gpu = False
+            # Force CPU mode for sm_120 GPU compatibility
+            use_gpu = False
+            if self.gpu_enabled:
+                logger.warning("GPU mode disabled for sm_120 compatibility, using CPU")
+            
+            # Set environment variable to force CPU
+            os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
             
             # Initialize EasyOCR Reader
             # EasyOCR expects language as a list

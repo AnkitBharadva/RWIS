@@ -83,6 +83,8 @@ class DamageDetector:
         try:
             from ultralytics import YOLO
             self.model = YOLO(self.model_path)
+            # Force CPU mode for sm_120 GPU compatibility
+            self.model.to('cpu')
         except FileNotFoundError:
             raise FileNotFoundError(
                 f"Damage detection model not found at: {self.model_path}"

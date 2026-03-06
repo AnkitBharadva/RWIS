@@ -81,21 +81,16 @@ class WagonTracker:
     
     def _init_tracker(self) -> None:
         """Initialize the ByteTrack tracker from ultralytics."""
-        try:
-            from ultralytics.trackers.byte_tracker import BYTETracker
-            from types import SimpleNamespace
-            
-            # ByteTrack configuration - tuned for wagon tracking
-            args = SimpleNamespace(
-                track_thresh=0.4,      # Lower threshold to track more detections
-                track_buffer=60,       # Increased buffer to maintain IDs longer
-                match_thresh=0.7,      # Slightly lower for better matching
-                mot20=False
-            )
-            self._tracker = BYTETracker(args, frame_rate=30)
-        except ImportError:
-            # Fallback: use simple ID assignment if ByteTrack not available
-            self._tracker = None
+        # Disable ByteTrack for now - use simple IoU+distance tracker instead
+        # ByteTrack has issues with fast-moving wagons
+        self._tracker = None
+        
+        # Custom IoU tracker state
+        self._active_tracks = {}  # track_id -> last_bbox
+        self._track_ages = {}     # track_id -> frames since last seen
+        self._max_age = 10        # Maximum frames to keep a track alive (reduced from 30)
+        self._min_iou = 0.2       # Minimum IoU for matching (lowered from 0.3 for better tracking)
+        self._max_distance = 80   # Maximum center distance in pixels for matching (reduced from 150 to prevent false matches)
 
     def _detections_to_array(
         self, 
@@ -182,16 +177,170 @@ class WagonTracker:
         
         return np.array(det_list, dtype=np.float32)
     
+    def _compute_iou(self, bbox1: BoundingBox, bbox2: BoundingBox) -> float:
+        """Compute Intersection over Union (IoU) between two bounding boxes.
+        
+        Args:
+            bbox1: First bounding box
+            bbox2: Second bounding box
+            
+        Returns:
+            IoU score between 0.0 and 1.0
+        """
+        # Calculate intersection area
+        x1 = max(bbox1.x1, bbox2.x1)
+        y1 = max(bbox1.y1, bbox2.y1)
+        x2 = min(bbox1.x2, bbox2.x2)
+        y2 = min(bbox1.y2, bbox2.y2)
+        
+        if x2 < x1 or y2 < y1:
+            return 0.0
+        
+        intersection = (x2 - x1) * (y2 - y1)
+        
+        # Calculate union area
+        area1 = (bbox1.x2 - bbox1.x1) * (bbox1.y2 - bbox1.y1)
+        area2 = (bbox2.x2 - bbox2.x1) * (bbox2.y2 - bbox2.y1)
+        union = area1 + area2 - intersection
+        
+        if union == 0:
+            return 0.0
+        
+        return intersection / union
+    
+    def _compute_center_distance(self, bbox1: BoundingBox, bbox2: BoundingBox) -> float:
+        """Compute Euclidean distance between centers of two bounding boxes.
+        
+        Args:
+            bbox1: First bounding box
+            bbox2: Second bounding box
+            
+        Returns:
+            Distance in pixels
+        """
+        cx1, cy1 = bbox1.center
+        cx2, cy2 = bbox2.center
+        return np.sqrt((cx1 - cx2)**2 + (cy1 - cy2)**2)
+    
+    def _match_detections_to_tracks(
+        self,
+        detections: List[WagonDetection]
+    ) -> List[Tuple[int, WagonDetection]]:
+        """Match detections to existing tracks using IoU and distance.
+        
+        Uses IoU as primary metric, with center distance as fallback for
+        fast-moving objects where IoU may be low.
+        
+        Args:
+            detections: List of current frame detections
+            
+        Returns:
+            List of (track_id, detection) tuples for matched detections
+        """
+        matched = []
+        unmatched_detections = []
+        used_track_ids = set()
+        
+        # Age all tracks
+        for track_id in list(self._track_ages.keys()):
+            self._track_ages[track_id] += 1
+            # Remove old tracks after max_age frames
+            # For crossed wagons, keep them longer (3x) to prevent immediate ID reuse
+            max_age_threshold = self._max_age * 3 if track_id in self._crossed_wagon_ids else self._max_age
+            if self._track_ages[track_id] > max_age_threshold:
+                if track_id in self._active_tracks:
+                    del self._active_tracks[track_id]
+                if track_id in self._track_ages:
+                    del self._track_ages[track_id]
+        
+        # Match each detection to best track
+        for det in detections:
+            if isinstance(det, np.ndarray):
+                if len(det) >= 4:
+                    det_bbox = BoundingBox(
+                        x1=int(det[0]), y1=int(det[1]),
+                        x2=int(det[2]), y2=int(det[3])
+                    )
+                else:
+                    continue
+            elif hasattr(det, 'bbox'):
+                det_bbox = det.bbox
+            else:
+                continue
+            
+            best_score = 0.0
+            best_track_id = None
+            
+            # Find best matching track (exclude only already used tracks in this frame)
+            for track_id, track_bbox in self._active_tracks.items():
+                if track_id in used_track_ids:
+                    continue
+                
+                # Compute IoU
+                iou = self._compute_iou(det_bbox, track_bbox)
+                
+                # Compute center distance
+                distance = self._compute_center_distance(det_bbox, track_bbox)
+                
+                # Scoring: prioritize IoU, but use distance as fallback
+                # If IoU is good (>= min_iou), use it directly
+                # If IoU is low but distance is small, use distance-based score
+                if iou >= self._min_iou:
+                    score = iou
+                elif distance <= self._max_distance:
+                    # Convert distance to a score (closer = higher score)
+                    # Score ranges from 0.0 (at max_distance) to 0.5 (at distance=0)
+                    score = 0.5 * (1.0 - distance / self._max_distance)
+                else:
+                    score = 0.0
+                
+                if score > best_score:
+                    best_score = score
+                    best_track_id = track_id
+            
+            if best_track_id is not None and best_score > 0.0:
+                # Match found - update track
+                matched.append((best_track_id, det))
+                self._active_tracks[best_track_id] = det_bbox
+                self._track_ages[best_track_id] = 0
+                used_track_ids.add(best_track_id)
+            else:
+                # No match - create new track
+                unmatched_detections.append(det)
+        
+        # Create new tracks for unmatched detections
+        for det in unmatched_detections:
+            if isinstance(det, np.ndarray):
+                if len(det) >= 4:
+                    det_bbox = BoundingBox(
+                        x1=int(det[0]), y1=int(det[1]),
+                        x2=int(det[2]), y2=int(det[3])
+                    )
+                else:
+                    continue
+            elif hasattr(det, 'bbox'):
+                det_bbox = det.bbox
+            else:
+                continue
+            
+            new_track_id = self._next_track_id
+            self._next_track_id += 1
+            self._active_tracks[new_track_id] = det_bbox
+            self._track_ages[new_track_id] = 0
+            matched.append((new_track_id, det))
+        
+        return matched
+    
     def _check_line_crossing(
         self, 
         track_id: int, 
         current_pos: float,
         line_pos_pixels: float
     ) -> bool:
-        """Check if a wagon should be counted.
+        """Check if a wagon should be counted with direction detection.
         
-        Simple approach: Count when wagon center passes the counting line.
-        For vertical line with left-to-right movement: count when center_x > line_x
+        Bidirectional counting: Counts wagons crossing the line in BOTH directions.
+        Uses track history to detect actual line crossing (not just position).
         
         Args:
             track_id: The track ID of the wagon
@@ -201,9 +350,21 @@ class WagonTracker:
         Returns:
             True if the wagon should be counted, False otherwise
         """
-        # Simple approach: count when wagon center has passed the line
-        # This works even if track IDs change frequently
-        return current_pos > line_pos_pixels
+        # Get track history
+        if track_id not in self._track_history or len(self._track_history[track_id]) < 2:
+            # Not enough history - don't count yet
+            return False
+        
+        history = self._track_history[track_id]
+        prev_pos = history[-2]  # Previous position
+        
+        # Check if wagon crossed the line (in either direction)
+        # Left to Right: prev_pos < line < current_pos
+        # Right to Left: prev_pos > line > current_pos
+        crossed_left_to_right = prev_pos < line_pos_pixels <= current_pos
+        crossed_right_to_left = prev_pos > line_pos_pixels >= current_pos
+        
+        return crossed_left_to_right or crossed_right_to_left
     
     def _is_position_already_counted(self, center_y: float, current_frame: int) -> bool:
         """Check if a wagon at this Y position was already counted recently.
@@ -381,21 +542,7 @@ class WagonTracker:
                 else:
                     current_pos = center_y  # Y coordinate for horizontal line
                 
-                # Check for line crossing using position-based duplicate prevention
-                crossed_now = False
-                should_count = self._check_line_crossing(track_id, current_pos, line_pos_pixels)
-                
-                if should_count:
-                    # Check if this position was already counted (prevents double counting)
-                    if not self._is_position_already_counted(center_y, frame_index):
-                        if track_id not in self._crossed_wagon_ids:
-                            self._crossed_wagon_ids.add(track_id)
-                        self._wagon_count += 1
-                        self._count_indices[track_id] = self._wagon_count
-                        self._mark_position_counted(center_y, frame_index)
-                        crossed_now = True
-                
-                # Update track history
+                # Update track history BEFORE checking line crossing
                 if track_id not in self._track_history:
                     self._track_history[track_id] = []
                 self._track_history[track_id].append(current_pos)
@@ -404,8 +551,20 @@ class WagonTracker:
                 if len(self._track_history[track_id]) > 30:
                     self._track_history[track_id] = self._track_history[track_id][-30:]
                 
-                # Create TrackedWagon - mark as crossed if past the line
-                crossed_line = current_pos > line_pos_pixels
+                # Check for line crossing
+                crossed_now = False
+                should_count = self._check_line_crossing(track_id, current_pos, line_pos_pixels)
+                
+                if should_count:
+                    # Only count if this track ID hasn't been counted before
+                    if track_id not in self._crossed_wagon_ids:
+                        self._crossed_wagon_ids.add(track_id)
+                        self._wagon_count += 1
+                        self._count_indices[track_id] = self._wagon_count
+                        crossed_now = True
+                
+                # Create TrackedWagon - mark as crossed if wagon has crossed
+                crossed_line = track_id in self._crossed_wagon_ids
                 count_index = self._count_indices.get(track_id)
                 
                 tracked_wagon = TrackedWagon(
@@ -430,9 +589,9 @@ class WagonTracker:
         line_pos_pixels: float,
         frame_index: int = 0
     ) -> List[TrackedWagon]:
-        """Simple tracking fallback when ByteTrack is not available.
+        """Simple tracking fallback using custom IoU-based matching.
         
-        This uses a simple IoU-based matching approach for tracking.
+        This uses IoU-based matching to maintain consistent track IDs.
         
         Args:
             detections: List of WagonDetection objects or numpy arrays
@@ -445,7 +604,10 @@ class WagonTracker:
         """
         tracked_wagons = []
         
-        for det in detections:
+        # Match detections to existing tracks
+        matched = self._match_detections_to_tracks(detections)
+        
+        for track_id, det in matched:
             try:
                 # Handle different detection formats
                 if isinstance(det, np.ndarray):
@@ -463,11 +625,6 @@ class WagonTracker:
                 else:
                     continue
                 
-                # Simple approach: assign new ID to each detection
-                # In production, this would use IoU matching with previous tracks
-                track_id = self._next_track_id
-                self._next_track_id += 1
-                
                 center_x, center_y = bbox.center
                 
                 # Get the relevant coordinate based on orientation
@@ -476,26 +633,29 @@ class WagonTracker:
                 else:
                     current_pos = center_y  # Y coordinate for horizontal line
                 
-                # Check for line crossing with position-based duplicate prevention
-                should_count = self._check_line_crossing(track_id, current_pos, line_pos_pixels)
-                crossed_now = False
-                
-                if should_count:
-                    if not self._is_position_already_counted(center_y, frame_index):
-                        if track_id not in self._crossed_wagon_ids:
-                            self._crossed_wagon_ids.add(track_id)
-                        self._wagon_count += 1
-                        self._count_indices[track_id] = self._wagon_count
-                        self._mark_position_counted(center_y, frame_index)
-                        crossed_now = True
-                
-                # Update track history
+                # Update track history BEFORE checking line crossing
                 if track_id not in self._track_history:
                     self._track_history[track_id] = []
                 self._track_history[track_id].append(current_pos)
                 
-                # Create TrackedWagon - mark as crossed if past the line
-                crossed_line = current_pos > line_pos_pixels
+                # Keep history limited
+                if len(self._track_history[track_id]) > 30:
+                    self._track_history[track_id] = self._track_history[track_id][-30:]
+                
+                # Check for line crossing
+                should_count = self._check_line_crossing(track_id, current_pos, line_pos_pixels)
+                crossed_now = False
+                
+                if should_count:
+                    # Only count if this track ID hasn't been counted before
+                    if track_id not in self._crossed_wagon_ids:
+                        self._crossed_wagon_ids.add(track_id)
+                        self._wagon_count += 1
+                        self._count_indices[track_id] = self._wagon_count
+                        crossed_now = True
+                
+                # Create TrackedWagon - mark as crossed if wagon has crossed
+                crossed_line = track_id in self._crossed_wagon_ids
                 count_index = self._count_indices.get(track_id)
                 
                 tracked_wagon = TrackedWagon(
@@ -542,8 +702,9 @@ class WagonTracker:
         self._track_history.clear()
         self._count_indices.clear()
         self._next_track_id = 1
+        self._counted_positions.clear()  # Clear position-based duplicate prevention
         
-        # Reinitialize ByteTrack tracker
+        # Reinitialize tracker
         self._init_tracker()
     
     def get_crossed_wagon_ids(self) -> Set[int]:
