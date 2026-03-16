@@ -31,8 +31,6 @@ class PipelineConfig:
     wagon_model_path: str = "models/damage_detector.pt"  # Contains: wagon_body, wheel
     damage_model_path: str = "models/wagon_detector.pt"  # Contains: Bamboo Door, Breakage, Close Door, Damage Door, Dent, Open Door, Wagon
     mprnet_model_path: str = "MPRNet/Deblurring/pretrained_models/model_deblurring.pth"
-    # Legacy NAFNet path for backward compatibility
-    nafnet_model_path: str = "models/nafnet_deblur.pth"
     
     # ROI resizing settings
     max_roi_width: int = 256  # Maximum ROI width for deblurring
@@ -58,6 +56,23 @@ class PipelineConfig:
     fp32_fallback: bool = True  # Fall back to FP32 on numerical instability
     max_batch_size: int = 1  # Batch size for MPRNet (always 1)
     enable_threading: bool = True
+    
+    # Advanced performance settings
+    parallel_roi_processing: bool = True  # Process multiple wagon ROIs in parallel
+    max_parallel_workers: int = 4  # Number of parallel workers for ROI processing
+    async_logging: bool = True  # Use async logging to avoid blocking
+    enable_ocr_cache: bool = True  # Cache OCR results for similar regions
+    ocr_cache_size: int = 100  # Maximum OCR cache entries
+    enable_damage_cache: bool = True  # Cache damage detection results
+    damage_cache_size: int = 50  # Maximum damage cache entries
+    
+
+    # Optimization settings
+    use_onnx_mprnet: bool = True  # Use ONNX Runtime for MPRNet (2-3x faster)
+    mprnet_onnx_path: str = "models/mprnet_optimized.onnx"
+    use_fast_blur_detector: bool = True  # Use optimized blur detector
+    use_fast_roi_utils: bool = True  # Use optimized ROI utilities
+    use_buffer_pool: bool = True  # Use buffer pooling
     
     # Output settings
     output_dir: str = "outputs"

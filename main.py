@@ -6,7 +6,7 @@ ROI extraction, blur detection, conditional deblurring via DeblurManager,
 OCR, damage detection, and logging.
 
 Key features:
-- Uses MPRNet (NOT NAFNet) for ROI-only deblurring
+- Uses MPRNet for ROI-only deblurring
 - N-th frame execution with ROI caching
 - FP16 inference with FP32 fallback
 - Wagon exit callback for cache cleanup
@@ -15,6 +15,7 @@ Key features:
 Requirements: 1.1, 9.6, 9.7, 7.5, 9.1, 9.8, 10.3, 10.4
 """
 
+import os
 import signal
 import sys
 import threading
@@ -28,14 +29,20 @@ import numpy as np
 
 from config import PipelineConfig, load_config
 from pipelines.blur_detector import BlurDetector
+from utils.fast_roi_utils import extract_roi_fast, resize_roi_fast, ROIBufferPool
+from pipelines.fast_blur_detector import FastBlurDetector
+from pipelines.mprnet_onnx_wrapper import MPRNetONNXWrapper
 from pipelines.wagon_detector import WagonDetector, FrameProcessingState
 from pipelines.damage_detector import DamageDetector
 from pipelines.ocr_pipeline import OCRPipeline
 from pipelines.mprnet_wrapper import MPRNetDeblur
 from pipelines.deblur_manager import DeblurManager
+from pipelines.parallel_processor import ParallelROIProcessor
+from pipelines.cached_ocr_pipeline import CachedOCRPipeline
 from tracking.tracker import WagonTracker
 from utils.clahe import CLAHEEnhancer
 from utils.logger import InspectionLogger
+from utils.performance_monitor import PerformanceMonitor
 from utils.roi_utils import extract_roi, resize_roi_for_deblur
 from utils.data_models import (
     BoundingBox, WagonRecord, TrackedWagon, DamageDetection, OCRResult
@@ -80,9 +87,9 @@ class GPUMemoryManager:
         # Use enhanced GPU utilities
         self._memory_monitor = GPUMemoryMonitor(memory_limit_bytes=memory_limit)
         self._batch_sizer = AdaptiveBatchSizer(
-            initial_batch_size=1,  # MPRNet always uses batch size 1
+            initial_batch_size=1,  # NAFNet always uses batch size 1
             min_batch_size=1,
-            max_batch_size=1,  # Enforce batch size 1 for MPRNet
+            max_batch_size=1,  # Enforce batch size 1 for NAFNet
             memory_limit_bytes=memory_limit
         )
         self._operation_queue = OperationQueue(memory_limit_bytes=memory_limit)
@@ -134,8 +141,8 @@ class GPUMemoryManager:
         return info['allocated'] > self.pressure_threshold
 
     def get_batch_size(self) -> int:
-        """Get current batch size (always 1 for MPRNet)."""
-        return 1  # MPRNet always uses batch size 1
+        """Get current batch size (always 1 for NAFNet)."""
+        return 1  # NAFNet always uses batch size 1
     
     def clear_cache(self) -> None:
         """Clear GPU memory cache."""
@@ -193,8 +200,8 @@ class RailwayWagonPipeline:
     
     Key constraints:
     - YOLO models receive only RAW or CLAHE-enhanced frames (never deblurred)
-    - MPRNet deblur is ROI-only (max 256px width)
-    - MPRNet runs every N frames with caching
+    - NAFNet deblur is ROI-only (max 256px width)
+    - NAFNet runs every N frames with caching
     - FP16 inference with FP32 fallback
     - NAFNet is NOT used anywhere
     
@@ -249,6 +256,10 @@ class RailwayWagonPipeline:
         self._clahe: Optional[CLAHEEnhancer] = None
         self._logger: Optional[InspectionLogger] = None
         
+        # Performance optimization components
+        self.perf_monitor = PerformanceMonitor(window_size=100)
+        self.parallel_processor: Optional[ParallelROIProcessor] = None
+        
         # Video capture
         self._video_capture: Optional[cv2.VideoCapture] = None
         self._frame_width = 0
@@ -289,13 +300,23 @@ class RailwayWagonPipeline:
         
         # Initialize blur detector with single threshold
         try:
-            # Use single threshold for simplified blur gating
-            threshold = getattr(self.config, 'blur_threshold', self.config.blur_threshold_t1)
-            self._blur_detector = BlurDetector(
-                t1=threshold,
-                t2=threshold * 3  # Upper bound for severe blur
-            )
-            print(f"  Blur detector initialized (threshold: {threshold})")
+            # Use optimized blur detector if enabled
+            if getattr(self.config, 'use_fast_blur_detector', False):
+                threshold_t1 = getattr(self.config, 'blur_threshold_t1', 100.0)
+                threshold_t2 = getattr(self.config, 'blur_threshold_t2', 300.0)
+                self._blur_detector = FastBlurDetector(
+                    threshold_t1=threshold_t1,
+                    threshold_t2=threshold_t2
+                )
+                print(f"  Fast blur detector initialized (t1: {threshold_t1}, t2: {threshold_t2})")
+            else:
+                # Use single threshold for simplified blur gating
+                threshold = getattr(self.config, 'blur_threshold', self.config.blur_threshold_t1)
+                self._blur_detector = BlurDetector(
+                    t1=threshold,
+                    t2=threshold * 3  # Upper bound for severe blur
+                )
+                print(f"  Blur detector initialized (threshold: {threshold})")
         except Exception as e:
             raise ConfigurationError(f"Failed to initialize blur detector: {e}")
         
@@ -333,16 +354,36 @@ class RailwayWagonPipeline:
         # Initialize MPRNet deblur (non-fatal if fails)
         try:
             max_roi_width = getattr(self.config, 'max_roi_width', 256)
-            self._mprnet = MPRNetDeblur(
-                model_path=self.config.mprnet_model_path,
-                device='cuda' if self.config.ocr_gpu_enabled else 'cpu',
-                use_fp16=getattr(self.config, 'use_fp16', True),
-                fp32_fallback=getattr(self.config, 'fp32_fallback', True),
-                max_roi_width=max_roi_width,
-                max_roi_height=max_roi_width  # Use same for height
-            )
-            self._mprnet.load_model()
-            print(f"  MPRNet deblur initialized (FP16: {self._mprnet.use_fp16})")
+            device = 'cuda' if self.config.ocr_gpu_enabled else 'cpu'
+            use_fp16 = getattr(self.config, 'use_fp16', True)
+            
+            # Try ONNX wrapper first if enabled
+            use_onnx = getattr(self.config, 'use_onnx_mprnet', False)
+            onnx_path = getattr(self.config, 'mprnet_onnx_path', 'models/mprnet_optimized.onnx')
+            
+            if use_onnx and os.path.exists(onnx_path):
+                print(f"  Using ONNX MPRNet (2-3x faster)")
+                self._mprnet = MPRNetONNXWrapper(
+                    onnx_model_path=onnx_path,
+                    device=device,
+                    max_roi_width=max_roi_width,
+                    max_roi_height=max_roi_width
+                )
+                self._mprnet.load_model()
+                print(f"  ONNX MPRNet initialized")
+            else:
+                if use_onnx:
+                    print(f"  ONNX model not found at {onnx_path}, falling back to PyTorch")
+                self._mprnet = MPRNetDeblur(
+                    model_path=self.config.mprnet_model_path,
+                    device=device,
+                    use_fp16=use_fp16,
+                    fp32_fallback=getattr(self.config, 'fp32_fallback', True),
+                    max_roi_width=max_roi_width,
+                    max_roi_height=max_roi_width  # Use same for height
+                )
+                self._mprnet.load_model()
+                print(f"  PyTorch MPRNet initialized (FP16: {self._mprnet.use_fp16})")
         except Exception as e:
             print(f"Warning: MPRNet model loading failed: {e}. Deblurring disabled.")
             self._graceful.disable_component('mprnet')
@@ -372,9 +413,35 @@ class RailwayWagonPipeline:
                 language=self.config.ocr_language
             )
             print(f"  OCR pipeline initialized")
+            
+            # Wrap with caching if enabled
+            if getattr(self.config, 'enable_ocr_cache', False):
+                cache_size = getattr(self.config, 'ocr_cache_size', 100)
+                self._ocr_pipeline = CachedOCRPipeline(
+                    self._ocr_pipeline,
+                    cache_size=cache_size
+                )
+                print(f"  OCR caching enabled (cache size: {cache_size})")
         except Exception as e:
             print(f"Warning: OCR pipeline initialization failed: {e}. OCR disabled.")
             self._graceful.disable_component('ocr')
+        
+        # Initialize parallel processor if enabled
+        if getattr(self.config, 'parallel_roi_processing', False):
+            try:
+                max_workers = getattr(self.config, 'max_parallel_workers', 4)
+                self.parallel_processor = ParallelROIProcessor(
+                    ocr_pipeline=self._ocr_pipeline,
+                    damage_detector=self._damage_detector,
+                    deblur_manager=self._deblur_manager,
+                    blur_detector=self._blur_detector,
+                    logger_instance=self._logger,
+                    max_workers=max_workers
+                )
+                print(f"  Parallel ROI processing enabled (workers: {max_workers})")
+            except Exception as e:
+                print(f"Warning: Parallel processor initialization failed: {e}. Using sequential processing.")
+                self.parallel_processor = None
         
         # Initialize tracker
         try:
@@ -442,7 +509,7 @@ class RailwayWagonPipeline:
             )
             self._fps = self._video_capture.get(cv2.CAP_PROP_FPS) or 30.0
             
-            # Set full frame dimensions for MPRNet rejection
+            # Set full frame dimensions for NAFNet rejection
             if self._mprnet:
                 self._mprnet.set_full_frame_dimensions(
                     self._frame_width, self._frame_height
@@ -559,6 +626,36 @@ class RailwayWagonPipeline:
         current_wagon_ids = {w.track_id for w in tracked_wagons}
         self._check_wagon_exits(current_wagon_ids)
         
+        # Use parallel processing if available, otherwise sequential
+        if self.parallel_processor is not None:
+            # Parallel processing of all wagons
+            records = self.parallel_processor.process_wagon_batch(
+                frame, tracked_wagons, frame_index, self.config.max_roi_width
+            )
+        else:
+            # Sequential processing (original method)
+            records = self._process_wagons_sequential(frame, tracked_wagons, frame_index)
+        
+        return records, tracked_wagons, raw_detections
+    
+    def _process_wagons_sequential(
+        self,
+        frame: np.ndarray,
+        tracked_wagons: List[TrackedWagon],
+        frame_index: int
+    ) -> List[WagonRecord]:
+        """Process wagons sequentially (fallback method).
+        
+        Args:
+            frame: Input frame
+            tracked_wagons: List of tracked wagons
+            frame_index: Current frame index
+            
+        Returns:
+            List of wagon records
+        """
+        records = []
+        
         # Process each tracked wagon
         for wagon in tracked_wagons:
             # Only process wagons that have crossed the counting line
@@ -568,7 +665,11 @@ class RailwayWagonPipeline:
             # Stage 5: ROI extraction (from RAW frame for damage detection)
             raw_roi = None
             with ErrorContext('roi_extraction', frame_index, self._graceful, suppress=True):
-                raw_roi, actual_bbox = extract_roi(frame, wagon.bbox, clip_to_bounds=True)
+                # Use fast ROI extraction if enabled
+                if getattr(self.config, 'use_fast_roi_utils', False):
+                    raw_roi, actual_bbox = extract_roi_fast(frame, wagon.bbox, clip_to_bounds=True)
+                else:
+                    raw_roi, actual_bbox = extract_roi(frame, wagon.bbox, clip_to_bounds=True)
             
             if raw_roi is None or raw_roi.size == 0:
                 continue
@@ -626,12 +727,7 @@ class RailwayWagonPipeline:
             with ErrorContext('logging', frame_index, self._graceful, suppress=True):
                 self._logger.log_wagon(record)
         
-        # Save debug frame if enabled
-        if self.config.enable_debug_frames:
-            with ErrorContext('debug_frame', frame_index, self._graceful, suppress=True):
-                self._save_debug_frame(frame, frame_index, tracked_wagons)
-        
-        return records, tracked_wagons, raw_detections
+        return records
 
     def _detect_damage(
         self,
@@ -928,7 +1024,7 @@ class RailwayWagonPipeline:
                     if self._deblur_manager:
                         self._deblur_manager.clear_all_caches()
                 
-                # Process frame (synchronous for now - MPRNet needs sequential processing)
+                # Process frame (synchronous for now - NAFNet needs sequential processing)
                 records, tracked_wagons, raw_detections = self._process_frame(frame, self._frame_index)
                 
                 # Display frame if display mode is enabled
